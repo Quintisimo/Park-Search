@@ -24,7 +24,7 @@ $RECYCLE.BIN/
 
 # Word temporary
 ~$*.doc*
-+*.docx
+*.docx
 
 # Excel temporary
 ~$*.xls*
