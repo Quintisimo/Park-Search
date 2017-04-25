@@ -1,0 +1,259 @@
+body {
+    background-image: url(../Images/Background.jpg);
+    color: #fafafa;
+}
+
+a {
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #fafafa;
+}
+
+h2 {
+    margin-top: 10px;
+    font-family: sans-serif;
+}
+
+#header {
+    padding: 20px;
+}
+
+#header h1 {
+    display: inline;
+}
+
+#header a,
+#back_button {
+    margin-left: 20px;
+    text-decoration: none;
+    background-color: #56aa72;
+    padding: 8px 17px;
+}
+
+#header a {
+    float: right;
+    text-align: right;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+::-webkit-datetime-edit {
+    color: grey;
+}
+
+.button {
+    padding: 6px 15px;
+    background-color: #57aba9;
+    border: 2px solid #57aba9;
+    color: #fafafa;
+}
+
+#footer {
+    font-family: sans-serif;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+#logo_and_search {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(40%);
+}
+
+img,
+#location_button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img,
+#location_button,
+#review_button {
+    display: block;
+}
+
+form {
+    padding-top: 10px;
+}
+
+#search {
+    width: 30%;
+    padding: 8px 15px;
+    background: #e3ffff;
+    border: 0px solid #e3ffff;
+}
+
+#search_options {
+    color: grey;
+    margin-left: -4px;
+    padding-top: 7px;
+    padding-bottom: 7.5px;
+    background: #e3ffff;
+    border: 0px solid #e3ffff;
+}
+
+#search_button {
+    position: relative;
+    left: -4px;
+}
+
+#location_button {
+    margin-top: 20px;
+    visibility: hidden;
+}
+
+table {
+    font-family: sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    vertical-align: middle;
+    background: #57aba9;
+}
+
+th {
+    background-color: #3d7a78;
+}
+
+th,
+td {
+    border: 1px solid #1a3432;
+}
+
+#results_table table {
+    text-align: center;
+}
+
+#results_table td {
+    height: 60px;
+}
+
+#results_table th {
+    height: 70px;
+}
+
+#map {
+    margin-top: 40px;
+    height: 300px;
+    width: 100%;
+}
+
+#content,
+#reviews {
+    padding: 0 10%;
+}
+
+#content {
+    top: 20%;
+}
+
+#back_button {
+    margin-left: 0;
+    float: left;
+    text-align: left;
+}
+
+#reviews {
+    top: 30%;
+}
+
+#review_button {
+    margin-top: 5px;
+}
+
+#reviews {
+    right: 0px;
+}
+
+#reviews table {
+    width: 400px;
+}
+
+#reviews td:first-child {
+    text-align: center;
+}
+
+#reviews th,
+#reviews td {
+    height: 60px;
+}
+
+.reviews th,
+.reviews td {
+    padding: 10px;
+}
+
+#reviews,
+#content {
+    position: absolute;
+}
+
+#content h2 {
+    margin-bottom: 2px;
+}
+
+#reviews form {
+    padding-top: 20px;
+}
+
+#reviews form textarea {
+    width: 394px;
+    font-family: sans-serif;
+}
+
+form label {
+    font-family: sans-serif;
+    display: block;
+    padding-bottom: 5px;
+    margin-top: 20px;
+}
+
+.radio_button {
+    display: inline;
+    font-family: sans-serif;
+    margin-right: 20%
+}
+
+#login {
+    right: 0px;
+}
+
+#register {
+    left: 0px;
+}
+
+#login,
+#register {
+    padding: 5% 20%;
+    position: absolute;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    padding-left: 10px;
+    background: #e3ffff;
+    border: 0px solid #e3ffff;
+}
+
+#register_button,
+#login_button {
+    display: block;
+    margin-top: 15px;
+}
+
+@media screen and (max-device-width: 1024px) {
+    #login,
+    #register {
+        padding: 5%;
+    }
+}

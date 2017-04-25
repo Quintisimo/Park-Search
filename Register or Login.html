@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Park Search</title>
+    <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="JavaScript/Script.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <h1>Register/Login</h1>
+        <a href="Home.html">Home</a>
+    </div>
+    <form id="register">
+        <h2>Register</h2>
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" oninvalid="this.setCustomValidity('Please enter valid username')" oninput="setCustomValidity('')" class="input" required pattern="^[A-z]+$">
+        <label for="register_email">Email</label>
+        <input type="email" name="username" id="register_email" oninvalid="this.setCustomValidity('Please enter valid email address')" oninput="setCustomValidity('')" class="input" required>
+        <label for="date_of_birth">Date of Birth</label>
+        <input type="date" name="date_of_birth" id="date_of_birth" min="1973-01-01" max="1998-12-31" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" class="input" required>
+        <label for="age">Age</label>
+        <input type="number" name="age" id="age" min="18" max="99" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" class="input" required>
+        <label>Gender</label>
+        <input type="radio" name="male" required>
+        <p class="radio_button">Male</p>
+        <input type="radio" name="female">
+        <p class="radio_button">Female</p>
+        <label for="register_password">Password</label>
+        <input type="password" id="register_password" class="input" required>
+        <input type="submit" value="Register" class="button" id="register_button">
+    </form>
+    <form id="login">
+        <h2>Login</h2>
+        <label for="login_email">Email</label>
+        <input type="email" id="login_email" name="login_email" class="input" oninvalid="this.setCustomValidity('Please enter valid email address')" oninput="setCustomValidity('')" required>
+        <label for="login_password">Password</label>
+        <input type="password" id="login_password" name="login_password" class="input" required>
+        <input type="submit" value="Login" class="button" id="login_button">
+    </form>
+    <div id="footer_container">
+        <p id="footer">Register to get notification of events held at nearby parks.</p>
+    </div>
+</body>
+
+</html>
