@@ -23,7 +23,7 @@ $RECYCLE.BIN/
 *.tmp
 
 # Word temporary
-~$*.doc*
+~$*.docx
 
 # Excel temporary
 ~$*.xls*
