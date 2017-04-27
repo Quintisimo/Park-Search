@@ -22,8 +22,7 @@ h2 {
     display: inline;
 }
 
-#header a,
-#back_button {
+#header a, #back_button {
     margin-left: 20px;
     text-decoration: none;
     background-color: #56aa72;
@@ -57,8 +56,8 @@ h2 {
 #footer {
     font-family: sans-serif;
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     text-align: center;
 }
@@ -70,15 +69,12 @@ h2 {
     transform: translateY(40%);
 }
 
-img,
-#location_button {
+img, #location_button {
     margin-left: auto;
     margin-right: auto;
 }
 
-img,
-#location_button,
-#review_button {
+img, #location_button, #review_button {
     display: block;
 }
 
@@ -124,8 +120,7 @@ th {
     background-color: #3d7a78;
 }
 
-th,
-td {
+th, td {
     border: 1px solid #1a3432;
 }
 
@@ -147,8 +142,7 @@ td {
     width: 100%;
 }
 
-#content,
-#reviews {
+#content, #reviews {
     padding: 0 10%;
 }
 
@@ -171,7 +165,7 @@ td {
 }
 
 #reviews {
-    right: 0px;
+    right: 0;
 }
 
 #reviews table {
@@ -182,18 +176,15 @@ td {
     text-align: center;
 }
 
-#reviews th,
-#reviews td {
+#reviews th, #reviews td {
     height: 60px;
 }
 
-.reviews th,
-.reviews td {
+.reviews th, .reviews td {
     padding: 10px;
 }
 
-#reviews,
-#content {
+#reviews, #content {
     position: absolute;
 }
 
@@ -224,15 +215,14 @@ form label {
 }
 
 #login {
-    right: 0px;
+    right: 0;
 }
 
 #register {
-    left: 0px;
+    left: 0;
 }
 
-#login,
-#register {
+#login, #register {
     padding: 5% 20%;
     position: absolute;
 }
@@ -245,15 +235,13 @@ form label {
     border: 0px solid #e3ffff;
 }
 
-#register_button,
-#login_button {
+#register_button, #login_button {
     display: block;
     margin-top: 15px;
 }
 
 @media screen and (max-device-width: 1024px) {
-    #login,
-    #register {
+    #login, #register {
         padding: 5%;
     }
 }
