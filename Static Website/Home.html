@@ -2,31 +2,31 @@
 <html>
 
 <head>
-    <title>Park Search</title>
-    <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="JavaScript/Script.js"></script>
+  <title>Park Search</title>
+  <link href="CSS/Style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="JavaScript/Script.js"></script>
 </head>
 
 <body onload="searchType()">
-    <div id="header">
-        <h1>Find a Parks Near You</h1>
-        <a href="Register%20or%20Login.html">Register / Login</a>
-    </div>
-    <div id="logo_and_search">
-        <img src="Images/Park.png" alt="Park Image">
-        <form>
-            <input type="text" name="search" id="search" placeholder="" required>
-            <select name="search_options" onchange="searchType()" id="search_options">
-            <option value="suburb">Suburb</option>
-            <option value="name">Name</option>
-            <option value="rating">Rating</option>
-            <option value="location">Location</option>
-            </select>
-            <input type="submit" value="Search" onclick="sampleResults()" class="button" id="search_button">
-            <input type="button" value="Get Location" onclick="getLocation()" class="button" id="location_button">
-        </form>
-    </div>
-    <p id="footer">Get out of the house and enjoy life. Sweat is just fat crying.</p>
+  <div id="header">
+    <h1>Find a Parks Near You</h1>
+    <a href="Register%20or%20Login.html">Register / Login</a>
+  </div>
+  <div id="logo_and_search">
+    <img src="Images/Park.png" alt="Park Image">
+    <form>
+      <input type="text" name="search" id="search" placeholder="" required>
+      <select name="search_options" onchange="searchType()" id="search_options">
+      <option value="suburb">Suburb</option>
+      <option value="name">Name</option>
+      <option value="rating">Rating</option>
+      <option value="location">Location</option>
+      </select>
+      <input type="submit" value="Search" onclick="sampleResults()" class="button" id="search_button">
+      <input type="button" value="Get Location" onclick="getLocation()" class="button" id="location_button">
+    </form>
+  </div>
+  <p id="footer">Get out of the house and enjoy life. Sweat is just fat crying.</p>
 </body>
 
 </html>
