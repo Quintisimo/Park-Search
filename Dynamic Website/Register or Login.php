@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-<?php include 'Template.php'; ?>
+<?php
+include 'Template.php';
+?>
 
 <body>
-  <div id="header">
-    <h1>Register or Login</h1>
-    <?php menu('Home') ?>
-  </div>
+  <?php
+  $menu = array('Home');
+  page_header('Register or Login', $menu);
+  ?>
   <form id="register">
     <h2>Register</h2>
     <label>Username</label>

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-<?php include 'Template.php'; ?>
+<?php
+include 'Template.php';
+?>
 
 <body>
-  <div id="header">
-    <h1>7th Brigade Park</h1>
-    <?php menu('Home');
-    menu('Register or Login'); ?>
-  </div>
+  <?php
+  $menu = array('Home', 'Register or Login');
+  page_header('', $menu);
+  ?>
   <div id="content">
     <a href="Results.php" id="back_button">Go back to search results</a>
     <div id="map"></div>

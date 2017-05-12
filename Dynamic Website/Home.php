@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 
-<?php include 'Template.php'; ?>
+<?php
+include 'Template.php';
+?>
 
 <body onload="searchType()">
-  <div id="header">
-    <h1>Find a Parks Near You</h1>
-    <?php menu('Register or Login') ?>
-  </div>
+  <?php
+  $menu = array('Register or Login');
+  page_header('Find a Park Near You', $menu);
+  ?>
   <div id="logo_and_search">
     <img src="Images/Park.png" alt="Park Image">
     <form>
