@@ -51,4 +51,10 @@
       echo "<p class=\"error\">Please enter your strong password";
     }
   }
+
+  function saveValue($field_list, $field_name) {
+    if (isset($field_list[$field_name])) {
+      echo htmlspecialchars($field_list[$field_name]);
+    }
+  }
 ?>

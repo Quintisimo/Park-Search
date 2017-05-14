@@ -4,6 +4,7 @@
 <?php
   include 'Template.php';
   include 'Validation.php';
+  pageHead();
 ?>
 
 <body>
@@ -13,7 +14,7 @@
     pageHeader('Register or Login', $menu);
   ?>
 
-  <form id="register" action="" method="post" novalidate>
+  <form id="register" action="" method="post">
     <h2>Register</h2>
 
     <label>Username</label>
@@ -22,7 +23,7 @@
         validateText($_POST, 'register_username', '/^[A-z]+$/', 9);
       }
     ?>
-    <input type="text" name="register_username" class="input" oninvalid="this.setCustomValidity('Please enter a valid username')" oninput="setCustomValidity('')" pattern="^[A-z]+$" required>
+    <input type="text" name="register_username" value="<?php saveValue($_POST, 'register_username'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid username')" oninput="setCustomValidity('')" pattern="^[A-z]+$" required>
 
     <label>Email</label>
     <?php
@@ -30,7 +31,7 @@
         validateText($_POST, 'email', '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', 9);
       }
     ?>
-    <input type="email" name="email" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
+    <input type="email" name="email" value="<?php saveValue($_POST, 'email'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
 
     <label for="date_of_birth">Date of Birth</label>
     <?php
@@ -38,7 +39,7 @@
         validateDOB($_POST, 'date_of_birth');
       }
     ?>
-    <input type="date" name="date_of_birth" class="input" min="1938-01-01" max="1998-12-31" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" required>
+    <input type="date" name="date_of_birth" value="<?php saveValue($_POST, 'date_of_birth'); ?>" class="input" min="1938-01-01" max="1998-12-31" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" required>
 
     <label for="age">Age</label>
     <?php
@@ -46,7 +47,7 @@
         validateAge($_POST, 'age');
       }
     ?>
-    <input type="number" name="age" class="input" min="18" max="79" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" required>
+    <input type="number" name="age" value="<?php saveValue($_POST, 'age'); ?>" class="input" min="18" max="79" oninvalid="this.setCustomValidity('You must be 18 or older')" oninput="setCustomValidity('')" required>
 
     <label>Gender</label>
     <?php
@@ -67,12 +68,12 @@
         validatePassword($_POST, 'register_password', 9);
       }
     ?>
-    <input type="password" name="register_password" class="input" required>
+    <input type="password" name="register_password" value="<?php saveValue($_POST, 'register_password'); ?>" class="input" required>
 
     <input type="submit" value="Register" name="register" class="button" id="register_button">
   </form>
 
-  <form id="login" action="" method="post" novalidate>
+  <form id="login" action="" method="post">
     <h2>Login</h2>
 
     <label>Username</label>
@@ -81,7 +82,7 @@
         validateText($_POST, 'login_username', '/^[A-z]+$/', 6);
       }
     ?>
-    <input type="email" name="login_username" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
+    <input type="email" name="login_username" value="<?php saveValue($_POST, 'login_username'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
 
     <label>Password</label>
     <?php
@@ -89,12 +90,12 @@
         validatePassword($_POST, 'login_password', 6);
       }
     ?>
-    <input type="password" name="login_password" class="input" required>
+    <input type="password" name="login_password" value="<?php saveValue($_POST, 'login_password'); ?>" class="input" required>
 
     <input type="submit" value="Login" name="login" class="button" id="login_button">
   </form>
 
-    <p id="footer">Register to get notification of events held at nearby parks.</p>
+    <footer>Register to get notification of events held at nearby parks.</footer>
 </body>
 
 </html>

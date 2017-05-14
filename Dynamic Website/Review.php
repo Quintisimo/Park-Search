@@ -3,6 +3,7 @@
 
 <?php
   include 'Template.php';
+  pageHead('map');
 ?>
 
 <body>
@@ -62,7 +63,7 @@
     </form>
   </div>
 
-  <p id="footer">Hope you have a wonderful at the park.</p>
+  <footer>Hope you have a wonderful at the park.</footer>
 </body>
 
 </html>

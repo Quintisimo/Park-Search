@@ -3,6 +3,7 @@
 
 <?php
   include 'Template.php';
+  pageHead();
 ?>
 
 <body>
@@ -14,7 +15,7 @@
   <div id="results_table">
   </div>
 
-  <p id="footer">Click on a park to read more and write a review</p>
+  <footer>Click on a park to read more and write a review</footer>
 </body>
 
 </html>

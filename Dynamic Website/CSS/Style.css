@@ -13,16 +13,16 @@ h2 {
   margin: 10px 0 0;
 }
 
-#header {
+header {
   padding: 20px;
 }
 
-#header h1 {
+header h1 {
   display: inline;
   font-family: serif;
 }
 
-#header a,
+header a,
 #back_button {
   margin-left: 20px;
   text-decoration: none;
@@ -30,9 +30,13 @@ h2 {
   padding: 8px 17px;
 }
 
-#header a {
+header a {
   float: right;
   text-align: right;
+}
+
+nav {
+  display: inline;
 }
 
 ::-webkit-inner-spin-button {
@@ -54,9 +58,9 @@ h2 {
   color: #fafafa;
 }
 
-#footer {
+footer {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -247,7 +251,7 @@ form label {
 
 .input {
   display: block;
-  width: 300px;
+  width: 320px;
   height: 30px;
   padding-left: 10px;
   background: #e3ffff;

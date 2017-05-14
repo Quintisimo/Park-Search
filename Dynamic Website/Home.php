@@ -3,6 +3,7 @@
 
 <?php
   include 'Template.php';
+  pageHead();
 ?>
 
 <body onload="searchType()">
@@ -30,7 +31,7 @@
     </form>
   </div>
 
-  <p id="footer">Get out of the house and enjoy life. Sweat is just fat crying.</p>
+  <footer>Get out of the house and enjoy life. Sweat is just fat crying.</footer>
 </body>
 
 </html>
