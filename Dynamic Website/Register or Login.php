@@ -4,6 +4,7 @@
 <?php
   include 'Template.php';
   include 'Validation.php';
+  include 'Users Database.php';
   pageHead();
 ?>
 
@@ -20,7 +21,7 @@
     <label>Username</label>
     <?php
       if (!empty($_POST['register'])) {
-        validateText($_POST, 'register_username', '/^[A-z]+$/', 9);
+        validateUsername($_POST, 'register_username', 9);
       }
     ?>
     <input type="text" name="register_username" value="<?php saveValue($_POST, 'register_username'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid username')" oninput="setCustomValidity('')" pattern="^[A-z]+$" required>
@@ -28,7 +29,7 @@
     <label>Email</label>
     <?php
       if (!empty($_POST['register'])) {
-        validateText($_POST, 'email', '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', 9);
+        validateEmail($_POST, 'email');
       }
     ?>
     <input type="email" name="email" value="<?php saveValue($_POST, 'email'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
@@ -79,7 +80,7 @@
     <label>Username</label>
     <?php
       if (!empty($_POST['login'])) {
-        validateText($_POST, 'login_username', '/^[A-z]+$/', 6);
+        validateUsername($_POST, 'login_username');
       }
     ?>
     <input type="email" name="login_username" value="<?php saveValue($_POST, 'login_username'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
@@ -87,7 +88,7 @@
     <label>Password</label>
     <?php
       if (!empty($_POST['login'])) {
-        validatePassword($_POST, 'login_password', 6);
+        validatePassword($_POST, 'login_password');
       }
     ?>
     <input type="password" name="login_password" value="<?php saveValue($_POST, 'login_password'); ?>" class="input" required>
