@@ -1,5 +1,5 @@
 <?php
-  function validateUsername($field_list, $field_name) {
+  function validateUsername($field_list, $field_name, $register = '') {
     $regular_expression = '/^[A-z]+$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $usersDatabase = $pdo->query('SELECT username FROM registered_users');
@@ -16,16 +16,18 @@
       return false;
     }
 
-    foreach ($usersDatabase as $username) {
-      if ($username['username'] == $field_list[$field_name]) {
-        echo '<span class="error">Username already exists</span>';
-        return false;
+    if ($register = 'register') {
+      foreach ($usersDatabase as $username) {
+        if ($username['username'] == $field_list[$field_name]) {
+          echo '<span class="error">Username already exists</span>';
+          return false;
+        }
       }
     }
     return true;
   }
 
-  function validateEmail($field_list, $field_name) {
+  function validateEmail($field_list, $field_name, $register = '') {
     $regular_expression = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $usersDatabase = $pdo->query('SELECT email FROM registered_users');
@@ -41,10 +43,12 @@
       return false;
     }
 
-    foreach ($usersDatabase as $email) {
-      if ($email['email'] == $field_list[$field_name]) {
-        echo "<span class=\"error\">The $field_name is already in use</span>";
-        return false;
+    if ($register = 'register') {
+      foreach ($usersDatabase as $email) {
+        if ($email['email'] == $field_list[$field_name]) {
+          echo "<span class=\"error\">The $field_name is already in use</span>";
+          return false;
+        }
       }
     }
     return true;

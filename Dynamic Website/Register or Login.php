@@ -21,7 +21,7 @@
     <label>Username</label>
     <?php
       if (!empty($_POST['register'])) {
-        validateUsername($_POST, 'register_username', 9);
+        validateUsername($_POST, 'register_username', 'register');
       }
     ?>
     <input type="text" name="register_username" value="<?php saveValue($_POST, 'register_username'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid username')" oninput="setCustomValidity('')" pattern="^[A-z]+$" required>
@@ -29,7 +29,7 @@
     <label>Email</label>
     <?php
       if (!empty($_POST['register'])) {
-        validateEmail($_POST, 'email');
+        validateEmail($_POST, 'email', 'register');
       }
     ?>
     <input type="email" name="email" value="<?php saveValue($_POST, 'email'); ?>" class="input" oninvalid="this.setCustomValidity('Please enter a valid email address')" oninput="setCustomValidity('')" required>
@@ -66,7 +66,7 @@
     <label>Password</label>
     <?php
       if (!empty($_POST['register'])) {
-        validatePassword($_POST, 'register_password', 9);
+        validatePassword($_POST, 'register_password');
       }
     ?>
     <input type="password" name="register_password" value="<?php saveValue($_POST, 'register_password'); ?>" class="input" required>
