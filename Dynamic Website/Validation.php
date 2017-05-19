@@ -99,7 +99,8 @@
 
   function validUsername($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $usernameList = $pdo->query('SELECT username FROM registered_users');
+    $fetchData = $pdo->query('SELECT username FROM registered_users');
+    $usernameList = $fetchData->fetchAll();
 
     if (empty($field_list[$field_name]) == true) {
       echo "<span class=\"error\">Please enter your username</span>";
@@ -111,23 +112,24 @@
         echo '<span class="error">Username is not registered</span>';
         return false;
       }
-      return true;
     }
+    return true;
   }
 
   function validPassword($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $storedPassword = $pdo->query('SELECT password FROM registered_users WHERE username = $_POST[\'username\']');
-    $storedSalt = $pdo->query('SELECT salt FROM registered_users WHERE username = $_POST[\'username\']');
-    $hashPassword = hash('SHA2', $field_list[$field_name].$storedSalt);
+    $fetchData = $pdo->query('SELECT salt, password FROM registered_users WHERE username = "'. $_POST['login_username'] .'"');
+    $userData = $fetchData->fetch();
+    $hashPassword = hash('sha256', $field_list[$field_name].$userData[0]);
 
     if (empty($field_list[$field_name]) == true) {
       echo "<span class=\"error\">Please enter your password</span>";
       return false;
     }
 
-    if ($hashPassword != $storedPassword) {
+    if ($hashPassword != $userData[1]) {
       echo '<span class="error">Your password is incorrect</span>';
+      return false;
     }
     return true;
   }

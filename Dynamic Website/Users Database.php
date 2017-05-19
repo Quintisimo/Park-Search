@@ -22,4 +22,10 @@
     $_POST['register_password'] = null;
     $_POST['register'] = null;
   }
+
+  if (validUsername($_POST, 'login_username') == true && validPassword($_POST, 'login_password') == true) {
+    $_POST['login_username'] = null;
+    $_POST['login_password'] = null;
+    $_POST['login'] = null;
+  }
 ?>
