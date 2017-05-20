@@ -73,3 +73,12 @@ function initMap() {
     map: map
   });
 }
+
+function closeDialog() {
+  var dialog = document.getElementById('messagebox_register');
+    dialog.close();
+}
+
+function redirectDialog() {
+  window.location.href = "home.php";
+}

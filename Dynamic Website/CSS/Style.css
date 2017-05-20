@@ -23,7 +23,7 @@ header h1 {
 }
 
 header a,
-#back_button {
+.back_button {
   margin-left: 20px;
   text-decoration: none;
   background-color: #56aa72;
@@ -167,7 +167,7 @@ td {
   top: 20%;
 }
 
-#back_button {
+.back_button {
   margin-left: 0;
   float: left;
   text-align: left;
@@ -245,8 +245,9 @@ form label {
 
 #login,
 #register {
-  margin: 2% 15%;
   position: absolute;
+  margin: 0 10%;
+  top: 15%;
 }
 
 .input {
@@ -264,9 +265,59 @@ form label {
   margin-top: 15px;
 }
 
+.messagebox {
+  border: none;
+  color: white;
+  background-color: #90a4ae;
+  z-index: 1;
+}
+
+#messagebox_register {
+  top: 40%;
+  margin-left: 12%;
+}
+
+#messagebox_login {
+  top: 30%;
+  margin-right: 12%;
+}
+
+#ok_button {
+  display: block;
+  margin: 5% 40% 0;
+}
+
+#logout {
+  margin-top: 10%;
+}
+
+#logout h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#logout a {
+  margin-left: 46%;
+}
+
+#logout img {
+  width: 50%;
+  height: 50%;
+  margin-top: 100px;
+}
+
 @media screen and (max-device-width: 1024px) {
   #login,
   #register {
-    margin: 5%;
+    margin: 0 2%;
+    top: 20%;
+  }
+
+  #messagebox_register {
+    margin-left: 5%;
+  }
+
+  #messagebox_login {
+    margin-right: 5%;
   }
 }

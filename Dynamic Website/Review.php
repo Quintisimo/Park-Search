@@ -8,12 +8,18 @@
 
 <body>
   <?php
-  $menu = array('Home', 'Register or Login');
+  session_start();
+
+  if ($_SESSION['LoggedIn'] == true) {
+    $menu = array('Home', 'Logout');
+  } else {
+    $menu = array('Home', 'Register or Login');
+  }
   pageHeader('', $menu);
   ?>
 
   <div id="content">
-    <a href="Results.php" id="back_button">Go back to search results</a>
+    <a href="Results.php" class="back_button">Go back to search results</a>
     <div id="map"></div>
     <h2>Park information</h2>
 

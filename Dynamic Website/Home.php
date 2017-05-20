@@ -8,7 +8,13 @@
 
 <body onload="searchType()">
   <?php
-    $menu = array('Register or Login');
+    session_start();
+
+    if (!empty($_SESSION) == true) {
+      $menu = array('Logout');
+    } else {
+      $menu = array('Register or Login');
+    }
     pageHeader('Find a Park Near You', $menu);
   ?>
 

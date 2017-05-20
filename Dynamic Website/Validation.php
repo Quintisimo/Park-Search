@@ -5,12 +5,12 @@
     $usernameList = $pdo->query('SELECT username FROM registered_users');
 
     if (empty($field_list[$field_name]) == true) {
-      echo "<span class=\"error\">Please enter a username</span>";
+      echo '<span class="error">Please enter a username</span>';
       return false;
     }
 
     if (!preg_match($regular_expression, $field_list[$field_name])) {
-      echo "<span class=\"error\">Please enter a valid username</span>";
+      echo '<span class="error">Please enter a valid username</span>';
       return false;
     }
 
@@ -86,12 +86,12 @@
 
   function validatePassword($field_list, $field_name) {
     if (empty($field_list[$field_name]) == true) {
-      echo "<span class=\"error\">Please enter a password</span>";
+      echo '<span class="error">Please enter a password</span>';
       return false;
     }
 
     if (strlen($field_list[$field_name]) < 6 || strlen($field_list[$field_name]) > 45) {
-      echo "<span class=\"error\">Please enter a strong password</span>";
+      echo '<span class="error">Please enter a strong password</span>';
       return false;
     }
     return true;
@@ -100,18 +100,20 @@
   function validUsername($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $fetchData = $pdo->query('SELECT username FROM registered_users');
-    $usernameList = $fetchData->fetchAll();
+    $usernameList = array();
+
+    foreach ($fetchData as $username) {
+      $usernameList[] = $username[0];
+    }
 
     if (empty($field_list[$field_name]) == true) {
-      echo "<span class=\"error\">Please enter your username</span>";
+      echo '<span class="error">Please enter your username</span>';
       return false;
     }
 
-    foreach ($usernameList as $username) {
-      if ($username['username'] != $field_list[$field_name]) {
-        echo '<span class="error">Username is not registered</span>';
-        return false;
-      }
+    if (!in_array($field_list[$field_name], $usernameList)) {
+      echo '<span class="error">Username is not registered</span>';
+      return false;
     }
     return true;
   }
@@ -120,14 +122,16 @@
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $fetchData = $pdo->query('SELECT salt, password FROM registered_users WHERE username = "'. $_POST['login_username'] .'"');
     $userData = $fetchData->fetch();
-    $hashPassword = hash('sha256', $field_list[$field_name].$userData[0]);
+    $salt = $userData[0];
+    $storedHash = $userData[1];
+    $hashPassword = hash('sha256', $field_list[$field_name].$salt);
 
     if (empty($field_list[$field_name]) == true) {
-      echo "<span class=\"error\">Please enter your password</span>";
+      echo '<span class="error">Please enter your password</span>';
       return false;
     }
 
-    if ($hashPassword != $userData[1]) {
+    if ($hashPassword != $storedHash) {
       echo '<span class="error">Your password is incorrect</span>';
       return false;
     }

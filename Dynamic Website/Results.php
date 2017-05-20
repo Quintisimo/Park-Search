@@ -8,7 +8,13 @@
 
 <body>
   <?php
+  session_start();
+
+  if ($_SESSION['LoggedIn'] == true) {
+    $menu = array('Home', 'Logout');
+  } else {
     $menu = array('Home', 'Register or Login');
+  }
     pageHeader('Parks near you', $menu);
   ?>
 
