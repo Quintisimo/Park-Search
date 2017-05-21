@@ -1,12 +1,23 @@
+<!DOCTYPE html>
+<html>
+
 <?php
   include 'Template.php';
   pageHead();
-  session_start();
-  session_unset();
-  session_destroy();
-  echo '<div id="logout">';
-  echo '<h2>You have been logged out</h2>';
-  echo '<a href="home.php" class="back_button">Go Home</a>';
-  echo '<img src="Images/Logout.jpg" alt="Park Image">';
-  echo '</div>';
 ?>
+
+<body>
+  <?php
+    session_start();
+    session_unset();
+    session_destroy();
+
+    $menu = array('Home', 'Register or Login');
+    pageHeader('You have been logged out', $menu);
+  ?>
+
+  <h1 class="logout">Hope you have a great day</h1>
+  <footer>See you again soon</footer>
+</body>
+
+</html>

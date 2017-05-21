@@ -2,7 +2,7 @@
   function validateUsername($field_list, $field_name) {
     $regular_expression = '/^[A-z]+$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $usernameList = $pdo->query('SELECT username FROM registered_users');
+    $usernameList = $pdo->query('SELECT username FROM members');
 
     if (empty($field_list[$field_name]) == true) {
       echo '<span class="error">Please enter a username</span>';
@@ -26,7 +26,7 @@
   function validateEmail($field_list, $field_name) {
     $regular_expression = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $emailList = $pdo->query('SELECT email FROM registered_users');
+    $emailList = $pdo->query('SELECT email FROM members');
 
     if (empty($field_list[$field_name]) == true) {
       echo "<span class=\"error\">Please enter an $field_name address</span>";
@@ -99,7 +99,7 @@
 
   function validUsername($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $fetchData = $pdo->query('SELECT username FROM registered_users');
+    $fetchData = $pdo->query('SELECT username FROM members');
     $usernameList = array();
 
     foreach ($fetchData as $username) {
@@ -120,7 +120,7 @@
 
   function validPassword($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $fetchData = $pdo->query('SELECT salt, password FROM registered_users WHERE username = "'. $_POST['login_username'] .'"');
+    $fetchData = $pdo->query('SELECT salt, password FROM members WHERE username = "'. $_POST['login_username'] .'"');
     $userData = $fetchData->fetch();
     $salt = $userData[0];
     $storedHash = $userData[1];

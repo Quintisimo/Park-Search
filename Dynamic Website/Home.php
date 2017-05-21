@@ -37,7 +37,7 @@
     </form>
   </div>
 
-  <footer>Get out of the house and enjoy life. Sweat is just fat crying.</footer>
+  <footer>Get out of the house and enjoy life</footer>
 </body>
 
 </html>

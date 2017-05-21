@@ -96,7 +96,7 @@
     <input type="submit" value="Login" name="login" class="button" id="login_button">
   </form>
 
-    <footer>Register to get notification of events held at nearby parks.</footer>
+    <footer>Register to get notification of events held at nearby parks</footer>
 </body>
 
 </html>

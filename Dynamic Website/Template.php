@@ -18,6 +18,11 @@
 
     foreach ($array as $array_item) {
       echo "<a href=\"$array_item.php\">$array_item</a>";
+
+      if ($array_item == 'Logout') {
+        $username = key($_SESSION);
+        echo "<label>$username</label>";
+      }
     }
     echo '</nav>';
     echo '</header>';
