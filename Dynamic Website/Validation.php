@@ -4,12 +4,12 @@
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $usernameList = $pdo->query('SELECT username FROM members');
 
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter a username</span>';
       return false;
     }
 
-    if (!preg_match($regular_expression, $field_list[$field_name])) {
+    if (!preg_match($regular_expression, $field_list[$field_name]) || strlen($field_list[$field_name]) > 45) {
       echo '<span class="error">Please enter a valid username</span>';
       return false;
     }
@@ -28,13 +28,13 @@
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $emailList = $pdo->query('SELECT email FROM members');
 
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo "<span class=\"error\">Please enter an $field_name address</span>";
       return false;
 
     }
 
-    if (!preg_match($regular_expression, $field_list[$field_name])) {
+    if (!preg_match($regular_expression, $field_list[$field_name]) || strlen($field_list[$field_name]) > 45) {
       echo "<span class=\"error\">Please enter a valid $field_name address</span>";
       return false;
     }
@@ -49,7 +49,7 @@
   }
 
   function validateDOB($field_list, $field_name) {
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter your date of birth</span>';
       return false;
 
@@ -63,7 +63,7 @@
   }
 
   function validateAge($field_list, $field_name) {
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter your age</span>';
       return false;
 
@@ -77,7 +77,7 @@
   }
 
   function validateGender($field_list, $field_name) {
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please select your gender</span>';
       return false;
     }
@@ -85,7 +85,7 @@
   }
 
   function validatePassword($field_list, $field_name) {
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter a password</span>';
       return false;
     }
@@ -106,7 +106,7 @@
       $usernameList[] = $username[0];
     }
 
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter your username</span>';
       return false;
     }
@@ -120,13 +120,15 @@
 
   function validPassword($field_list, $field_name) {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $fetchData = $pdo->query('SELECT salt, password FROM members WHERE username = "'. $_POST['login_username'] .'"');
+    $fetchData = $pdo->prepare('SELECT salt, password FROM members WHERE username = :username');
+    $fetchData->bindValue(':username', $_POST['login_username']);
+    $fetchData->execute();
     $userData = $fetchData->fetch();
     $salt = $userData[0];
     $storedHash = $userData[1];
     $hashPassword = hash('sha256', $field_list[$field_name].$salt);
 
-    if (empty($field_list[$field_name]) == true) {
+    if (empty($field_list[$field_name])) {
       echo '<span class="error">Please enter your password</span>';
       return false;
     }
