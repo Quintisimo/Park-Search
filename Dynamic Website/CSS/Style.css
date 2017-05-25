@@ -194,7 +194,7 @@ td {
 }
 
 #reviews {
-  top: 30%;
+  top: 24%;
   right: 0;
 }
 
@@ -231,6 +231,25 @@ td {
 
 #reviews form textarea {
   width: 394px;
+  margin-top: 10px;
+}
+
+#rating_label {
+  margin-top: 0;
+}
+
+#rating label {
+  cursor: pointer;
+  margin: 0 20px 0 0;
+  font-weight: 600;
+}
+
+#rating input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  color: orange;
 }
 
 form label {

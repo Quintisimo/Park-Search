@@ -9,7 +9,7 @@
 <body>
   <?php
     session_start();
-    session_unset();
+    $_SESSION = array();
     session_destroy();
 
     $menu = array('Home', 'Register or Login');

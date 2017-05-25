@@ -48,10 +48,22 @@
 
     </table>
 
-    <form>
-      <textarea rows="4" cols="51" placeholder="Write a review for this park.." required></textarea>
-      <input type="submit" value="Review" class="button" id="review_button">
-    </form>
+    <?php if (!empty($_SESSION)) { ?>
+      <form action="" method="post">
+        <label for="rating" id="rating_label">Rate your experience</label>
+        <div id="rating">
+          <input type="radio" name="rating" value="1" id="one" required><label for="one">1</label>
+          <input type="radio" name="rating" value="2" id="two" required><label for="two">2</label>
+          <input type="radio" name="rating" value="3" id="three" required><label for="three">3</label>
+          <input type="radio" name="rating" value="4" id="four" required><label for="four">4</label>
+          <input type="radio" name="rating" value="5" id="five" required><label for="five">5</label>
+        </div>
+
+        <textarea rows="4" cols="51" name="review" placeholder="Write a review for this park.." required></textarea>
+
+        <input type="submit" name="submit" value="Submit" class="button" id="review_button">
+      </form>
+    <?php } ?>
   </div>
 
   <footer>Hope you have a wonderful at the park</footer>

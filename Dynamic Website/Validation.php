@@ -1,8 +1,9 @@
 <?php
+  $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
+
   function validateUsername() {
     $regular_expression = '/^[A-z]+$/';
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $usernameList = $pdo->query('SELECT username FROM members');
+    $usernameList = $GLOBALS['pdo']->query('SELECT username FROM members');
 
     if (empty($_POST['register_username'])) {
       echo '<span class="error">Please enter a username</span>';
@@ -25,8 +26,7 @@
 
   function validateEmail() {
     $regular_expression = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $emailList = $pdo->query('SELECT email FROM members');
+    $emailList = $GLOBALS['pdo']->query('SELECT email FROM members');
 
     if (empty($_POST['email'])) {
       echo "<span class=\"error\">Please enter an email address</span>";
@@ -98,8 +98,7 @@
   }
 
   function validUsername() {
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $fetchData = $pdo->query('SELECT username FROM members');
+    $fetchData = $GLOBALS['pdo']->query('SELECT username FROM members');
     $usernameList = array();
 
     foreach ($fetchData as $username) {
@@ -119,8 +118,7 @@
   }
 
   function validPassword() {
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $fetchData = $pdo->prepare('SELECT salt, password FROM members WHERE username = :username');
+    $fetchData = $GLOBALS['pdo']->prepare('SELECT salt, password FROM members WHERE username = :username');
     $fetchData->bindValue(':username', $_POST['login_username']);
     $fetchData->execute();
     $userData = $fetchData->fetch(PDO::FETCH_ASSOC);

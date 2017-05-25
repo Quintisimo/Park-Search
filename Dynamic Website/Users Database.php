@@ -16,13 +16,13 @@
     echo '<dialog open class="messagebox" id="messagebox_register">You have successfully registered';
     echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="closeDialog()"></dialog>';
 
-    $_POST['register_username'] = null;
-    $_POST['email'] = null;
-    $_POST['date_of_birth'] = null;
-    $_POST['age'] = null;
-    $_POST['gender'] = null;
-    $_POST['register_password'] = null;
-    $_POST['register'] = null;
+    unset($_POST['register_username']);
+    unset($_POST['email']);
+    unset($_POST['date_of_birth']);
+    unset($_POST['age']);
+    unset($_POST['gender']);
+    unset($_POST['register_password']);
+    unset($_POST['register']);
   }
 
   if (validUsername($_POST, 'login_username') && validPassword($_POST, 'login_password')) {
@@ -31,8 +31,8 @@
     echo '<dialog open class="messagebox" id="messagebox_login">You have successfully logged in';
     echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="redirectDialog()"></dialog>';
 
-    $_POST['login_username'] = null;
-    $_POST['login_password'] = null;
-    $_POST['login'] = null;
+    unset($_POST['login_username']);
+    unset($_POST['login_password']);
+    unset($_POST['login']);
   }
 ?>

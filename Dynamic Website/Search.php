@@ -1,7 +1,8 @@
 <?php
+  $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
+
   function nameSearch() {
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $result = $pdo->prepare('SELECT id, name, street FROM parks WHERE name LIKE :name');
+    $result = $GLOBALS['pdo']->prepare('SELECT id, name, street FROM parks WHERE name LIKE :name');
     $result->bindValue(':name', "%$_GET[name_search]%");
     $result->execute();
 
@@ -18,13 +19,12 @@
       }
 
     } else {
-      echo '<b>No results found for: </b>' .$name;
+      echo '<p>No results found for: </p>' . $name;
     }
   }
 
   function suburbSearch() {
-    $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-    $result = $pdo->prepare('SELECT id, name, street FROM parks WHERE suburb = :suburb');
+    $result = $GLOBALS['pdo']->prepare('SELECT id, name, street FROM parks WHERE suburb = :suburb');
     $result->bindValue(':suburb', $_GET['suburb_search']);
     $result->execute();
 
