@@ -4,11 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  font-size: 12px;
-  color: #fafafa;
-}
-
 h1 {
   display: inline;
   font-family: serif;
@@ -17,6 +12,17 @@ h1 {
 h2 {
   margin: 10px 0 0;
   font-family: serif;
+}
+
+a {
+  font-size: 12px;
+  color: #fafafa;
+  cursor: pointer;
+}
+
+p {
+  text-transform: capitalize;
+  margin: 0;
 }
 
 header {
@@ -169,7 +175,7 @@ td {
 #map {
   margin-top: 40px;
   height: 300px;
-  width: 100%;
+  width: 400px;
 }
 
 #content,
@@ -189,14 +195,11 @@ td {
 
 #reviews {
   top: 30%;
+  right: 0;
 }
 
 #review_button {
   margin-top: 5px;
-}
-
-#reviews {
-  right: 0;
 }
 
 #reviews table {
@@ -210,10 +213,6 @@ td {
 #reviews th,
 #reviews td {
   height: 60px;
-}
-
-.reviews th,
-.reviews td {
   padding: 10px;
 }
 

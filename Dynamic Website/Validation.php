@@ -123,9 +123,9 @@
     $fetchData = $pdo->prepare('SELECT salt, password FROM members WHERE username = :username');
     $fetchData->bindValue(':username', $_POST['login_username']);
     $fetchData->execute();
-    $userData = $fetchData->fetch();
-    $salt = $userData[0];
-    $storedHash = $userData[1];
+    $userData = $fetchData->fetch(PDO::FETCH_ASSOC);
+    $salt = $userData['salt'];
+    $storedHash = $userData['password'];
     $hashPassword = hash('sha256', $_POST['login_password'].$salt);
 
     if (empty($_POST['login_password'])) {

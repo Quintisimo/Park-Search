@@ -10,7 +10,7 @@
   <?php
     session_start();
 
-    if (isset($_SESSION)) {
+    if (!empty($_SESSION)) {
       $menu = array('Logout');
     } else {
       $menu = array('Register or Login');

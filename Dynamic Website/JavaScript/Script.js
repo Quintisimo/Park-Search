@@ -1,5 +1,3 @@
-var latitude, longitude;
-
 function searchType() {
   var search_options = document.getElementById("search_options"),
     search = document.getElementById("search"),
@@ -41,7 +39,6 @@ function searchType() {
     location_button.style.visibility = "visible";
   }
 }
-
 
 function getLocation() {
   if (navigator.geolocation) {
@@ -90,9 +87,13 @@ function initMap(latitude, longitude) {
 
 function closeDialog() {
   var dialog = document.getElementById('messagebox_register');
-    dialog.close();
+  dialog.close();
 }
 
 function redirectDialog() {
   window.location.href = "home.php";
+}
+
+function goBack() {
+  history.go(-1);
 }

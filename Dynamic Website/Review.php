@@ -3,44 +3,29 @@
 
 <?php
   include 'Template.php';
+  include 'Park.php';
   pageHead('map');
 ?>
 
-<body onload="initMap(-27.38006149, 153.0387005)">
-  <?php
+<?php
+  echo "<body onload=\"initMap($parkData[latitude], $parkData[longitude])\">";
   session_start();
 
-  if (isset($_SESSION)) {
+  if (!empty($_SESSION)) {
     $menu = array('Home', 'Logout');
   } else {
     $menu = array('Home', 'Register or Login');
   }
-  pageHeader('', $menu);
-  ?>
+  pageHeader($parkData['name'], $menu);
+?>
 
   <div id="content">
-    <a href="Results.php" class="back_button">Go back to search results</a>
+    <a class="back_button" onclick="goBack()">Go back to search results</a>
     <div id="map"></div>
     <h2>Park information</h2>
-
-    <table class="reviews">
-
-      <tr>
-        <th>Things to do</th>
-        <td>Playground, bike track, barbecue</td>
-      </tr>
-
-      <tr>
-        <th>Suburb</th>
-        <td>Chermside</td>
-      </tr>
-
-      <tr>
-        <th>Rating</th>
-        <td>3 stars</td>
-      </tr>
-
-    </table>
+    <?php
+      echo "<p>$street</p>";
+    ?>
   </div>
 
   <div id="reviews">

@@ -20,7 +20,7 @@
 
     <label>Username</label>
     <?php
-      if (isset($_POST['register'])) {
+      if (!empty($_POST['register'])) {
         validateUsername();
       }
     ?>

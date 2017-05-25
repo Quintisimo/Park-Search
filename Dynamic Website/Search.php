@@ -12,7 +12,7 @@
         $street = strtolower($row['street']);
         echo '<tr>';
         echo "<td>$name<br>";
-        echo "<a href=\"individualPark.php?id=$row[id]\">See reviews</a></td>";
+        echo "<a href=\"Review.php?id=$row[id]\">See reviews</a></td>";
         echo "<td>$street</td>";
         echo '</tr>';
       }
@@ -33,7 +33,7 @@
       $street = strtolower($row['street']);
       echo '<tr>';
       echo "<td>$name<br>";
-      echo "<a href=\"individualPark.php?id=$row[id]\">See reviews</a></td>";
+      echo "<a href=\"Review.php?id=$row[id]\">See reviews</a></td>";
       echo "<td>$street</td>";
       echo '</tr>';
     }

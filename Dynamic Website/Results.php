@@ -11,7 +11,7 @@
   <?php
   session_start();
 
-  if (isset($_SESSION)) {
+  if (!empty($_SESSION)) {
     $menu = array('Home', 'Logout');
   } else {
     $menu = array('Home', 'Register or Login');
@@ -45,7 +45,7 @@
     ?>
   </table>
 
-  <!--<footer>Click on a park to read more and write a review</footer>-->
+  <footer>Click on a park to read more and write a review</footer>
 </body>
 
 </html>
