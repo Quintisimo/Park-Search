@@ -6,11 +6,11 @@
   pageHead('map');
 ?>
 
-<body>
+<body onload="initMap(-27.38006149, 153.0387005)">
   <?php
   session_start();
 
-  if (!empty($_SESSION)) {
+  if (isset($_SESSION)) {
     $menu = array('Home', 'Logout');
   } else {
     $menu = array('Home', 'Register or Login');

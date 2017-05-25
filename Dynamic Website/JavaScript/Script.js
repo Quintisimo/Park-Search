@@ -3,26 +3,40 @@ var latitude, longitude;
 function searchType() {
   var search_options = document.getElementById("search_options"),
     search = document.getElementById("search"),
+    suburb = document.getElementById('suburb_options');
     location_button = document.getElementById("location_button");
 
-  if (search_options.value == "suburb") {
-    search.placeholder = "Enter the name of the suburb..";
+  if (search_options.value == "name") {
+    search.style.display = "inline";
+    search.name = "name_search";
+    search.required = true;
+    suburb.style.display = "none";
+    search.placeholder = "Enter the name of the park..";
     location_button.style.visibility = "hidden";
   }
 
-  if (search_options.value == "name") {
-    search.placeholder = "Enter the name of the park..";
+  if (search_options.value == "suburb") {
+    search.style.display = "none";
+    search.required = false;
+    suburb.style.display = "inline";
     location_button.style.visibility = "hidden";
-
   }
 
   if (search_options.value == "rating") {
+    search.style.display = "inline";
+    search.name = "rating_search";
+    search.required = true;
+    suburb.style.display = "none";
     search.type = "number";
     search.placeholder = "Enter a rating between 1 and 5..";
     location_button.style.visibility = "hidden";
   }
 
   if (search_options.value == "location") {
+    search.style.display = "inline";
+    search.name = "location_search";
+    search.required = true;
+    suburb.style.display = "none";
     search.placeholder = "Click the button below to determine your location..";
     location_button.style.visibility = "visible";
   }
@@ -59,10 +73,10 @@ function showError(error) {
   }
 }
 
-function initMap() {
+function initMap(latitude, longitude) {
   var location = {
-    lat: -27.38006149,
-    lng: 153.0387005
+    lat: latitude,
+    lng: longitude
   };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 16,

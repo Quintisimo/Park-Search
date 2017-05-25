@@ -1,21 +1,21 @@
 <?php
-  function validateUsername($field_list, $field_name) {
+  function validateUsername() {
     $regular_expression = '/^[A-z]+$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $usernameList = $pdo->query('SELECT username FROM members');
 
-    if (empty($field_list[$field_name])) {
+    if (empty($_POST['register_username'])) {
       echo '<span class="error">Please enter a username</span>';
       return false;
     }
 
-    if (!preg_match($regular_expression, $field_list[$field_name]) || strlen($field_list[$field_name]) > 45) {
+    if (!preg_match($regular_expression, $_POST['register_username']) || strlen($_POST['register_username']) > 45) {
       echo '<span class="error">Please enter a valid username</span>';
       return false;
     }
 
     foreach ($usernameList as $username) {
-      if ($username['username'] == $field_list[$field_name]) {
+      if ($username['username'] == $_POST['register_username']) {
         echo '<span class="error">Username already exists</span>';
         return false;
       }
@@ -23,81 +23,81 @@
     return true;
   }
 
-  function validateEmail($field_list, $field_name) {
+  function validateEmail() {
     $regular_expression = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $emailList = $pdo->query('SELECT email FROM members');
 
-    if (empty($field_list[$field_name])) {
-      echo "<span class=\"error\">Please enter an $field_name address</span>";
+    if (empty($_POST['email'])) {
+      echo "<span class=\"error\">Please enter an email address</span>";
       return false;
 
     }
 
-    if (!preg_match($regular_expression, $field_list[$field_name]) || strlen($field_list[$field_name]) > 45) {
-      echo "<span class=\"error\">Please enter a valid $field_name address</span>";
+    if (!preg_match($regular_expression, $_POST['email']) || strlen($_POST['email']) > 45) {
+      echo "<span class=\"error\">Please enter a valid email address</span>";
       return false;
     }
 
     foreach ($emailList as $email) {
-      if ($email['email'] == $field_list[$field_name]) {
-        echo "<span class=\"error\">The $field_name is already in use</span>";
+      if ($email['email'] == $_POST['email']) {
+        echo "<span class=\"error\">The email address is already in use</span>";
         return false;
       }
     }
     return true;
   }
 
-  function validateDOB($field_list, $field_name) {
-    if (empty($field_list[$field_name])) {
+  function validateDOB() {
+    if (empty($_POST['date_of_birth'])) {
       echo '<span class="error">Please enter your date of birth</span>';
       return false;
 
     }
 
-    if (substr($field_list[$field_name], 0, 4) < 1938 || substr($field_list[$field_name], 0, 4) > 1998) {
+    if (substr($_POST['date_of_birth'], 0, 4) < 1938 || substr($_POST['date_of_birth'], 0, 4) > 1998) {
       echo '<span class="error">You must be 18 or older</span>';
       return false;
     }
     return true;
   }
 
-  function validateAge($field_list, $field_name) {
-    if (empty($field_list[$field_name])) {
+  function validateAge() {
+    if (empty($_POST['age'])) {
       echo '<span class="error">Please enter your age</span>';
       return false;
 
     }
 
-    if ($field_list[$field_name] < 18 || $field_list[$field_name] > 79) {
+    if ($_POST['age'] < 18 || $_POST['age'] > 79) {
       echo '<span class="error">You must be 18 or older</span>';
       return false;
     }
     return true;
   }
 
-  function validateGender($field_list, $field_name) {
-    if (empty($field_list[$field_name])) {
+  function validateGender() {
+    if (empty($_POST['gender'])) {
       echo '<span class="error">Please select your gender</span>';
       return false;
     }
     return true;
   }
 
-  function validatePassword($field_list, $field_name) {
-    if (empty($field_list[$field_name])) {
+  function validatePassword() {
+    if (empty($_POST['register_password'])) {
       echo '<span class="error">Please enter a password</span>';
       return false;
     }
 
-    if (strlen($field_list[$field_name]) < 6 || strlen($field_list[$field_name]) > 45) {
+    if (strlen($_POST['register_password']) < 6 || strlen($_POST['register_password']) > 45) {
       echo '<span class="error">Please enter a strong password</span>';
       return false;
     }
     return true;
   }
 
-  function validUsername($field_list, $field_name) {
+  function validUsername() {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $fetchData = $pdo->query('SELECT username FROM members');
     $usernameList = array();
@@ -106,19 +106,19 @@
       $usernameList[] = $username[0];
     }
 
-    if (empty($field_list[$field_name])) {
+    if (empty($_POST['login_username'])) {
       echo '<span class="error">Please enter your username</span>';
       return false;
     }
 
-    if (!in_array($field_list[$field_name], $usernameList)) {
+    if (!in_array($_POST['login_username'], $usernameList)) {
       echo '<span class="error">Username is not registered</span>';
       return false;
     }
     return true;
   }
 
-  function validPassword($field_list, $field_name) {
+  function validPassword() {
     $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
     $fetchData = $pdo->prepare('SELECT salt, password FROM members WHERE username = :username');
     $fetchData->bindValue(':username', $_POST['login_username']);
@@ -126,9 +126,9 @@
     $userData = $fetchData->fetch();
     $salt = $userData[0];
     $storedHash = $userData[1];
-    $hashPassword = hash('sha256', $field_list[$field_name].$salt);
+    $hashPassword = hash('sha256', $_POST['login_password'].$salt);
 
-    if (empty($field_list[$field_name])) {
+    if (empty($_POST['login_password'])) {
       echo '<span class="error">Please enter your password</span>';
       return false;
     }

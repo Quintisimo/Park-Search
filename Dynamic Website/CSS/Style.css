@@ -113,7 +113,12 @@ form {
   border: 0 solid #e3ffff;
 }
 
-#search_options {
+#suburb_options {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.dropdown {
   color: grey;
   margin-left: -4px;
   padding-top: 7px;
@@ -148,8 +153,9 @@ td {
   border: 1px solid #1a3432;
 }
 
-#results_table table {
+#results_table {
   text-align: center;
+  text-transform: capitalize;
 }
 
 #results_table td {
