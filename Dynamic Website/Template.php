@@ -20,7 +20,7 @@
       echo "<a href=\"$array_item.php\">$array_item</a>";
 
       if ($array_item == 'Logout') {
-        $username = key($_SESSION);
+        $username = $_SESSION['park_search'];
         echo "<label>$username</label>";
       }
     }

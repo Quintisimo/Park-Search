@@ -97,3 +97,13 @@ function redirectDialog() {
 function goBack() {
   history.go(-1);
 }
+
+function moveFooter() {
+  var footer = document.getElementsByTagName('FOOTER')[0],
+  vertical_scroll = document.body.scrollHeight > window.innerHeight;
+
+  if (vertical_scroll) {
+    footer.style.position = "relative";
+    footer.style.margin = "30px 0 0 0";
+  }
+}

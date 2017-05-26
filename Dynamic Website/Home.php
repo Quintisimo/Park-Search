@@ -9,8 +9,7 @@
 <body onload="searchType()">
   <?php
     session_start();
-
-    if (!empty($_SESSION)) {
+    if (!empty($_SESSION['park_search'])) {
       $menu = array('Logout');
     } else {
       $menu = array('Register or Login');

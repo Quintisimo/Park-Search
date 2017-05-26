@@ -11,7 +11,11 @@
 <body>
 
   <?php
-    $menu = array('Home');
+    if (!empty($_SESSION['park_search'])) {
+      $menu = array('Logout');
+    } else {
+      $menu = array('Home');
+    }
     pageHeader('Register or Login', $menu);
   ?>
 

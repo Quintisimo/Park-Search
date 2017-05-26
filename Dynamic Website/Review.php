@@ -11,7 +11,7 @@
   echo "<body onload=\"initMap($parkData[latitude], $parkData[longitude])\">";
   session_start();
 
-  if (!empty($_SESSION)) {
+  if (!empty($_SESSION['park_search'])) {
     $menu = array('Home', 'Logout');
   } else {
     $menu = array('Home', 'Register or Login');
@@ -24,7 +24,7 @@
     <div id="map"></div>
     <h2>Park information</h2>
     <?php
-      echo "<p>$street</p>";
+      echo "<span>$street</span>";
     ?>
   </div>
 
@@ -48,7 +48,7 @@
 
     </table>
 
-    <?php if (!empty($_SESSION)) { ?>
+    <?php if (!empty($_SESSION['park_search'])) { ?>
       <form action="" method="post">
         <label for="rating" id="rating_label">Rate your experience</label>
         <div id="rating">

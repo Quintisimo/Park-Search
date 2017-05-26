@@ -27,7 +27,7 @@
 
   if (validUsername($_POST, 'login_username') && validPassword($_POST, 'login_password')) {
     session_start();
-    $_SESSION[$_POST['login_username']] = true;
+    $_SESSION['park_search'] = $_POST['login_username'];
     echo '<dialog open class="messagebox" id="messagebox_login">You have successfully logged in';
     echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="redirectDialog()"></dialog>';
 

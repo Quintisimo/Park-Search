@@ -7,11 +7,11 @@
   pageHead();
 ?>
 
-<body>
+<body onload="moveFooter()">
   <?php
   session_start();
 
-  if (!empty($_SESSION)) {
+  if (!empty($_SESSION['park_search'])) {
     $menu = array('Home', 'Logout');
   } else {
     $menu = array('Home', 'Register or Login');
@@ -33,11 +33,11 @@
           suburbSearch();
         }
 
-        if ($_GET['search_options'] == 'rating') {
-
+        if ($_GET['search_options'] == 'location') {
+          locationSearch();
         }
 
-        if ($_GET['search_options'] == 'location') {
+        if ($_GET['search_options'] == 'rating') {
 
         }
       }
