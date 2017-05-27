@@ -1,11 +1,14 @@
 body {
   background-image: url(../Images/Background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fafafa;
   font-family: sans-serif;
 }
 
 h1 {
   display: inline;
+  text-transform: capitalize;
   font-family: serif;
 }
 
@@ -15,10 +18,9 @@ h2 {
 }
 
 h3 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   width: 100%;
   text-align: center;
-  text-transform: capitalize;
 }
 
 a {
@@ -173,21 +175,30 @@ td {
 
 #results_table td {
   height: 60px;
+  width: 50%;
 }
 
 #results_table th {
   height: 70px;
 }
 
-#map {
+#individual_map,
+#search_map {
   margin-top: 40px;
   height: 300px;
   width: 400px;
 }
 
-#content,
-#reviews {
-  padding: 0 10%;
+#search_map {
+  margin: 0 0 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  text-transform: capitalize;
+}
+
+#search_map,
+#search_map a {
+  color: black;
 }
 
 #content {
@@ -226,6 +237,7 @@ td {
 #reviews,
 #content {
   position: absolute;
+  padding: 0 40px;
 }
 
 #content h2 {

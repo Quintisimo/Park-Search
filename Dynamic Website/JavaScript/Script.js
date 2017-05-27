@@ -75,10 +75,12 @@ function initMap(latitude, longitude) {
     lat: latitude,
     lng: longitude
   };
-  var map = new google.maps.Map(document.getElementById("map"), {
+
+  var map = new google.maps.Map(document.getElementById("individual_map"), {
     zoom: 16,
     center: location
   });
+
   var marker = new google.maps.Marker({
     position: location,
     map: map

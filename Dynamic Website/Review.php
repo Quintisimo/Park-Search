@@ -16,12 +16,13 @@
   } else {
     $menu = array('Home', 'Register or Login');
   }
-  pageHeader($parkData['name'], $menu);
+  $name = strtolower($parkData['name']);
+  pageHeader($name, $menu);
 ?>
 
   <div id="content">
     <a class="back_button" onclick="goBack()">Go back to search results</a>
-    <div id="map"></div>
+    <div id="individual_map"></div>
     <h2>Park information</h2>
     <?php
       echo "<span>$street</span>";
