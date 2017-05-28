@@ -47,16 +47,17 @@
 
   <div id="reviews">
     <div itemprop="review" itemscope itemtype="http://schema.org/Review">
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>User reviews and ratings</th>
-        </tr>
+      <?php
+        $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE id = :id');
+        $review_data->bindValue(':id', $_GET['id']);
+        $review_data->execute();
 
-        <?php
-          $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE id = :id');
-          $review_data->bindValue(':id', $_GET['id']);
-          $review_data->execute();
+        if ($review_data->rowCount() > 0) {
+          echo '<table>';
+          echo '<tr>';
+          echo '<th>Date</th>';
+          echo '<th>User reviews and ratings</th>';
+          echo '</tr>';
           echo "<meta itemprop=\"itemReviewed\" content=\"$name\" />";
 
           foreach($review_data as $review) {
@@ -68,8 +69,9 @@
             echo "<i><span itemprop=\"ratingValue\">$review[rating]</span> stars</i></div></td>";
             echo '</tr>';
           }
-        ?>
-      </table>
+          echo '</table>';
+        }
+      ?>
     </div>
 
     <?php if (!empty($_SESSION['park_search'])) { ?>
