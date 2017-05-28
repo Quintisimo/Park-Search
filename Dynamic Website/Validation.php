@@ -153,7 +153,7 @@
 
   function validateReview() {
     $regular_expression = '/^[A-z\s]+$/';
-    $usernameList = $GLOBALS['pdo']->query('SELECT username FROM reviews');
+    $userData = $GLOBALS['pdo']->query('SELECT name, username FROM reviews');
 
     if (empty($_POST['review'])) {
       echo '<span class="error">Please enter a review</span>';
@@ -165,8 +165,8 @@
       return false;
     }
 
-    foreach ($usernameList as $username) {
-      if ($username['username'] == $_SESSION['park_search']) {
+    foreach ($userData as $data) {
+      if ($data['name'] == $park_data['name'] && $data['username'] == $_SESSION['park_search']) {
         echo '<span class="error">One review per user</span>';
         return false;
       }
