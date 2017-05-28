@@ -14,7 +14,7 @@
     $users_data->execute();
 
     echo '<dialog open class="messagebox" id="messagebox_register">You have successfully registered';
-    echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="closeDialog(\'messagebox_register\')"></dialog>';
+    echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="closeDialog()"></dialog>';
 
     unset($_POST['register_username']);
     unset($_POST['email']);
@@ -28,6 +28,9 @@
   if (validUsername() && validPassword()) {
     session_start();
     $_SESSION['park_search'] = $_POST['login_username'];
+
+    echo '<dialog open class="messagebox" id="messagebox_login">You have successfully registered';
+    echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="redirectDialog()"></dialog>';
 
     unset($_POST['login_username']);
     unset($_POST['login_password']);
@@ -54,9 +57,6 @@
     $park_rating->bindValue(':id', $_GET['id']);
     $park_rating->bindValue(':averagerating', $average_rating);
     $park_rating->execute();
-
-    echo '<dialog open class="messagebox" id="messagebox_review">Your review has been submitted successfully';
-    echo '<input type="submit" value="OK" class="button" id="ok_button" onclick="closeDialog(\'messagebox_review\')"></dialog>';
 
     unset($_POST['rating']);
     unset($_POST['review']);

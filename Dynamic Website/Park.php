@@ -2,11 +2,11 @@
 <html>
 
 <?php
+  session_start();
   include 'Template.php';
   include 'Validation.php';
   include 'PDO.php';
   pageHead('map');
-  session_start();
 
   if (isset($_GET['id'])) {
     $result = $pdo->prepare('SELECT name, street, suburb, latitude, longitude FROM items WHERE id = :id');
@@ -32,34 +32,45 @@
   <div id="content">
     <a class="back_button" id="previous_page" onclick="goBack()">Go back to search results</a>
     <div id="individual_map"></div>
-    <h2>Park information</h2>
+    <h2>Park Address</h2>
     <?php
-      echo "<span>$street</span><br>";
-      echo "<span>$suburb</span>";
+      echo '<div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">';
+      echo "<meta itemprop=\"latitude\" content=\"$park_data[latitude]\" />";
+      echo "<meta itemprop=\"longitude\" content=\"$park_data[longitude]\" />";
+      echo '</div>';
+      echo '<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">';
+      echo "<span itemprop=\"streetAddress\">$street</span><br>";
+      echo "<span itemprop=\"addressLocality\">$suburb</span>";
+      echo '</div>';
     ?>
   </div>
 
   <div id="reviews">
-    <table>
-      <tr>
-        <th>Date</th>
-        <th>User reviews and ratings</th>
-      </tr>
+    <div itemprop="review" itemscope itemtype="http://schema.org/Review">
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>User reviews and ratings</th>
+        </tr>
 
-      <?php
-        $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE id = :id');
-        $review_data->bindValue(':id', $_GET['id']);
-        $review_data->execute();
+        <?php
+          $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE id = :id');
+          $review_data->bindValue(':id', $_GET['id']);
+          $review_data->execute();
+          echo "<meta itemprop=\"itemReviewed\" content=\"$name\" />";
 
-        foreach($review_data as $review) {
-          echo '<tr>';
-          echo "<td>$review[reviewdate]</td>";
-          echo "<td>$review[username]<br>$review[review]<br><i>$review[rating] stars</i></td>";
-          echo '</tr>';
-        }
-      ?>
-      
-    </table>
+          foreach($review_data as $review) {
+            echo '<tr>';
+            echo "<td>$review[reviewdate]</td>";
+            echo "<td><span itemprop=\"author\">$review[username]</span><br>";
+            echo "<span class=\"nocaps\" itemprop=\"reviewBody\">$review[review]</span><br>";
+            echo "<div itemprop=\"reviewRating\" itemscope itemtype=\"http://schema.org/Rating\">";
+            echo "<i><span itemprop=\"ratingValue\">$review[rating]</span> stars</i></div></td>";
+            echo '</tr>';
+          }
+        ?>
+      </table>
+    </div>
 
     <?php if (!empty($_SESSION['park_search'])) { ?>
       <form action="" method="post">

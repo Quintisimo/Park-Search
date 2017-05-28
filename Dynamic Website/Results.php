@@ -2,10 +2,10 @@
 <html>
 
 <?php
+  session_start();
   include 'Template.php';
   include 'Search.php';
   pageHead('map');
-  session_start();
 ?>
 
 <body onload="moveFooter()">

@@ -89,8 +89,8 @@ function initMap(latitude, longitude) {
   });
 }
 
-function closeDialog(id) {
-  var dialog = document.getElementById(id);
+function closeDialog() {
+  var dialog = document.getElementById('messagebox_register');
   dialog.close();
 }
 

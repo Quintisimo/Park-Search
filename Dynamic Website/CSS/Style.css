@@ -1,6 +1,7 @@
 html {
   background: url(../Images/Background.jpg) no-repeat center center fixed;
   background-size: cover;
+  overflow-x: hidden;
 }
 
 body {
@@ -37,7 +38,12 @@ span {
 }
 
 header {
+  background-color: rgba(86, 170, 114, 0.8);
+  margin: -8px;
   padding: 20px;
+  position: sticky;
+  top: -1px;
+  z-index: 2;
 }
 
 nav {
@@ -197,6 +203,11 @@ td {
   width: 100%;
 }
 
+#map_container {
+  width: 100%;
+  position: fixed;
+}
+
 #search_map {
   margin: 0 0 20px;
   margin-left: 50%;
@@ -254,6 +265,10 @@ td {
 
 #reviews form {
   padding-top: 20px;
+}
+
+.nocaps {
+  text-transform: none;
 }
 
 #reviews form textarea {

@@ -6,7 +6,6 @@
   include 'Validation.php';
   include 'Database Submission.php';
   pageHead();
-  session_start();
 ?>
 
 <body>
@@ -79,7 +78,7 @@
     <input type="submit" value="Register" name="register" class="button" id="register_button">
   </form>
 
-  <form id="login" action="" method="post" novalidate>
+  <form id="login" action="" method="post">
     <h2>Login</h2>
 
     <label>Username</label>

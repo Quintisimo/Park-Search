@@ -2,10 +2,10 @@
 <html>
 
 <?php
+  session_start();
   include 'Template.php';
   include 'PDO.php';
   pageHead();
-  session_start();
 ?>
 
 <body onload="searchType()">
@@ -21,9 +21,9 @@
   <div id="logo_and_search">
     <img src="Images/Park.png" alt="Park Image">
 
-    <form action="Results.php" method="get" novalidate>
+    <form action="Results.php" method="get">
       <input type="text" id="search" placeholder="Search for a park">
-      
+
       <select name="rating_search" id="rating_options" class="dropdown">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -50,7 +50,7 @@
       <option value="location" name="location">Location</option>
     </select>
 
-      <input type="submit" class="button" name="submit" id="search_button">
+      <input type="submit" class="button" value="Submit" name="submit" id="search_button">
       <input type="button" onclick="getLocation()" value="Get Location" class="button" id="location_button">
     </form>
   </div>

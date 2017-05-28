@@ -67,6 +67,7 @@
     $result = $GLOBALS['pdo']->prepare('SELECT id, name, street, suburb, latitude, longitude FROM items WHERE averagerating = :averagerating');
     $result->bindValue(':averagerating', $_GET['rating_search']);
     $result->execute();
+    $marker_location = array();
 
     if ($result->rowCount() > 0) {
       if (empty($_GET['rating_search'])) {
@@ -101,6 +102,7 @@
 
   function locationSearch() {
     $location = $_GET['location_search'];
+
     if (empty($_GET['location_search'])) {
       allResults();
     } else {
@@ -128,65 +130,85 @@
       $result->bindValue(':long', $long);
       $result->execute();
       $marker_location = array();
-      echo "<h3>Parks within a $search_rad km radius</h3>";
-      echo '<div id="search_map"></div>';
-      echo '<table id="results_table">';
-      echo '<th>Park Name</th>';
-      echo '<th>Street Name</th>';
-      echo '<th>Suburb</th>';
 
-      foreach ($result as $row) {
-        $name = strtolower($row['name']);
-        $street = strtolower($row['street']);
-        $suburb = strtolower($row['suburb']);
-        $marker_location[] = array($row['id'], $name, $street, $row['latitude'], $row['longitude']);
-        echo '<tr>';
-        echo "<td>$name<br>";
-        echo "<a href=\"Park.php?id=$row[id]\">See reviews</a></td>";
-        echo "<td>$street</td>";
-        echo "<td>$suburb</td>";
-        echo '</tr>';
+      if ($result->rowCount() > 0) {
+        echo "<h3>Parks within a $search_rad km radius</h3>";
+        echo '<div id="search_map"></div>';
+        echo '<table id="results_table">';
+        echo '<th>Park Name</th>';
+        echo '<th>Street Name</th>';
+        echo '<th>Suburb</th>';
+
+        foreach ($result as $row) {
+          $name = strtolower($row['name']);
+          $street = strtolower($row['street']);
+          $suburb = strtolower($row['suburb']);
+          $marker_location[] = array($row['id'], $name, $street, $row['latitude'], $row['longitude']);
+          echo '<tr>';
+          echo "<td>$name<br>";
+          echo "<a href=\"Park.php?id=$row[id]\">See reviews</a></td>";
+          echo "<td>$street</td>";
+          echo "<td>$suburb</td>";
+          echo '</tr>';
+        }
+        echo '</table>';
+        searchMap($marker_location);
+      } else {
+        echo '<h3>No parks found near you</h3>';
       }
-      echo '</table>';
-      searchMap($marker_location);
     }
   }
 
-  function searchMap($array) {
-    echo '<script type="text/javascript">';
-    echo 'function initMap() {';
-    echo 'var map = new google.maps.Map(document.getElementById("search_map"), {';
-    echo '});';
-    echo 'var bounds  = new google.maps.LatLngBounds();';
+  function searchMap($array, $all_markers = 'no') {
+    echo "\n<script type=\"text/javascript\">";
+    echo "\nfunction initMap() {";
+    echo "\nvar map = new google.maps.Map(document.getElementById(\"search_map\"), {";
+    echo "\nzoom: 12,";
+    echo "\ncenter: {lat: -27.470125 , lng: 153.021072}";
+    echo "\n});";
+
+    if ($all_markers == 'no') {
+      echo "\nvar bounds  = new google.maps.LatLngBounds();";
+    }
 
     foreach ($array as $array_item) {
-      echo "var infowindow = new google.maps.InfoWindow({";
-      echo "content: '$array_item[1]<br>$array_item[2]<br><a href=\"Park.php?id=$array_item[0]\">See reviews</a>'";
-      echo ' });';
-      echo "var marker = new google.maps.Marker({";
-      echo "position: {lat: $array_item[3], lng: $array_item[4]},";
-      echo 'map: map,';
-      echo 'infowindow: infowindow';
-      echo '});';
-      echo "google.maps.event.addListener(marker, 'click', function() {";
-      echo "this.infowindow.open(map, this);";
-      echo '});';
-      echo 'bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));';
+      echo "\nvar infowindow = new google.maps.InfoWindow({";
+      $remove_quote_name = str_replace("'", "\'", $array_item[1]);
+      $remove_quote_street = str_replace("'", "\'", $array_item[2]);
+      echo "\ncontent: '$remove_quote_name<br>$remove_quote_street<br><a href=\"Park.php?id=$array_item[0]\">See reviews</a>'";
+      echo "\n});";
+      echo "\nvar marker = new google.maps.Marker({";
+      echo "\nposition: {lat: $array_item[3], lng: $array_item[4]},";
+      echo "\nmap: map,";
+      echo "\ninfowindow: infowindow";
+      echo "\n});";
+      echo "\ngoogle.maps.event.addListener(marker, 'click', function() {";
+      echo "\nthis.infowindow.open(map, this);";
+      echo "\n});";
+
+      if ($all_markers == 'no') {
+        echo "\nbounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));";
+      }
     }
-    echo 'map.fitBounds(bounds);';
-    echo 'map.panToBounds(bounds);';
-    echo '}';
-    echo 'google.maps.event.addDomListener(window, "load", initMap);';
-    echo '</script>';
+
+    if ($all_markers == 'no') {
+      echo "\nmap.fitBounds(bounds);";
+      echo "\nmap.panToBounds(bounds);";
+    }
+    echo "\n}";
+    echo "\ngoogle.maps.event.addDomListener(window, \"load\", initMap);";
+    echo "\n</script>";
   }
 
   function allResults() {
     $result = $GLOBALS['pdo']->query('SELECT id, name, street, suburb, latitude, longitude FROM items');
     echo '<h3>Showing results for every park in Brisbane</h3>';
+    echo '<div id="search_map"></div>';
     echo '<table id="results_table">';
     echo '<th>Park Name</th>';
     echo '<th>Street Name</th>';
     echo '<th>Suburb</th>';
+    $marker_location = array();
 
     foreach ($result as $row) {
       $name = strtolower($row['name']);
@@ -201,5 +223,6 @@
       echo '</tr>';
     }
     echo '</table>';
+    searchMap($marker_location, 'all_markers');
   }
 ?>

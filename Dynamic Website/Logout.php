@@ -2,9 +2,9 @@
 <html>
 
 <?php
+  session_start();
   include 'Template.php';
   pageHead();
-  session_start();
 ?>
 
 <body>
