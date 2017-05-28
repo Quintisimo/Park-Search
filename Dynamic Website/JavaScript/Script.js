@@ -1,6 +1,7 @@
 function searchType() {
   var search_options = document.getElementById("search_options"),
     search = document.getElementById("search"),
+    rating = document.getElementById('rating_options');
     suburb = document.getElementById('suburb_options');
     location_button = document.getElementById("location_button");
 
@@ -8,6 +9,7 @@ function searchType() {
     search.style.display = "inline";
     search.name = "name_search";
     search.required = true;
+    rating.style.display = "none";
     suburb.style.display = "none";
     search.placeholder = "Enter the name of the park..";
     location_button.style.visibility = "hidden";
@@ -16,17 +18,16 @@ function searchType() {
   if (search_options.value == "suburb") {
     search.style.display = "none";
     search.required = false;
+    rating.style.display = "none";
     suburb.style.display = "inline";
     location_button.style.visibility = "hidden";
   }
 
   if (search_options.value == "rating") {
-    search.style.display = "inline";
-    search.name = "rating_search";
-    search.required = true;
+    search.style.display = "none";
+    rating.style.display = "inline";
+    search.required = false;
     suburb.style.display = "none";
-    search.type = "number";
-    search.placeholder = "Enter a rating between 1 and 5..";
     location_button.style.visibility = "hidden";
   }
 
@@ -34,6 +35,7 @@ function searchType() {
     search.style.display = "inline";
     search.name = "location_search";
     search.required = true;
+    rating.style.display = "none";
     suburb.style.display = "none";
     search.placeholder = "Click the button below to determine your location..";
     location_button.style.visibility = "visible";
@@ -87,8 +89,8 @@ function initMap(latitude, longitude) {
   });
 }
 
-function closeDialog() {
-  var dialog = document.getElementById('messagebox_register');
+function closeDialog(id) {
+  var dialog = document.getElementById(id);
   dialog.close();
 }
 

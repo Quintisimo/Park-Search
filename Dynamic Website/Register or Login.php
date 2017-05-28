@@ -4,15 +4,16 @@
 <?php
   include 'Template.php';
   include 'Validation.php';
-  include 'Users Database.php';
+  include 'Database Submission.php';
   pageHead();
+  session_start();
 ?>
 
 <body>
 
   <?php
     if (!empty($_SESSION['park_search'])) {
-      $menu = array('Logout');
+      $menu = array('Home', 'Logout');
     } else {
       $menu = array('Home');
     }
@@ -24,7 +25,7 @@
 
     <label>Username</label>
     <?php
-      if (!empty($_POST['register'])) {
+      if (isset($_POST['register'])) {
         validateUsername();
       }
     ?>

@@ -1,7 +1,9 @@
-body {
-  background-image: url(../Images/Background.jpg);
-  background-repeat: no-repeat;
+html {
+  background: url(../Images/Background.jpg) no-repeat center center fixed;
   background-size: cover;
+}
+
+body {
   color: #fafafa;
   font-family: sans-serif;
 }
@@ -175,7 +177,6 @@ td {
 
 #results_table td {
   height: 60px;
-  width: 50%;
 }
 
 #results_table th {
@@ -186,7 +187,14 @@ td {
 #search_map {
   margin-top: 40px;
   height: 300px;
+}
+
+#individual_map {
   width: 400px;
+}
+
+#search_map {
+  width: 100%;
 }
 
 #search_map {

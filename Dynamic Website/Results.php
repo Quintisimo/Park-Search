@@ -5,12 +5,11 @@
   include 'Template.php';
   include 'Search.php';
   pageHead('map');
+  session_start();
 ?>
 
 <body onload="moveFooter()">
   <?php
-    session_start();
-
     if (!empty($_SESSION['park_search'])) {
       $menu = array('Home', 'Logout');
     } else {
@@ -28,12 +27,12 @@
         suburbSearch();
       }
 
-      if ($_GET['search_options'] == 'location') {
-        locationSearch();
+      if ($_GET['search_options'] == 'rating') {
+        ratingSearch();
       }
 
-      if ($_GET['search_options'] == 'rating') {
-
+      if ($_GET['search_options'] == 'location') {
+        locationSearch();
       }
     }
   ?>

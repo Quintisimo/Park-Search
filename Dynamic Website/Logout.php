@@ -4,11 +4,11 @@
 <?php
   include 'Template.php';
   pageHead();
+  session_start();
 ?>
 
 <body>
   <?php
-    session_start();
     $_SESSION = array();
     session_destroy();
 

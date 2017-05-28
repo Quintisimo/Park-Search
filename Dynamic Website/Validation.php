@@ -1,5 +1,5 @@
 <?php
-  $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
+  include 'PDO.php';
 
   function validateUsername() {
     $regular_expression = '/^[A-z]+$/';
@@ -29,19 +29,19 @@
     $emailList = $GLOBALS['pdo']->query('SELECT email FROM members');
 
     if (empty($_POST['email'])) {
-      echo "<span class=\"error\">Please enter an email address</span>";
+      echo '<span class="error">Please enter an email address</span>';
       return false;
 
     }
 
     if (!preg_match($regular_expression, $_POST['email']) || strlen($_POST['email']) > 45) {
-      echo "<span class=\"error\">Please enter a valid email address</span>";
+      echo '<span class="error">Please enter a valid email address</span>';
       return false;
     }
 
     foreach ($emailList as $email) {
       if ($email['email'] == $_POST['email']) {
-        echo "<span class=\"error\">The email address is already in use</span>";
+        echo '<span class="error">The email address is already in use</span>';
         return false;
       }
     }
@@ -142,5 +142,27 @@
     if (isset($field_list[$field_name])) {
       echo htmlspecialchars($field_list[$field_name]);
     }
+  }
+
+  function validateRating() {
+    if (empty($_POST['rating'])) {
+      echo '<span class="error">Please select a rating</span>';
+    }
+    return true;
+  }
+
+  function validateReview() {
+    $regular_expression = '/^[A-z\s]+$/';
+
+    if (empty($_POST['review'])) {
+      echo '<span class="error">Please enter a review</span>';
+      return false;
+    }
+
+    if (!preg_match($regular_expression, $_POST['review'])) {
+      echo '<span class="error">Only text allowed</span>';
+      return false;
+    }
+    return true;
   }
 ?>

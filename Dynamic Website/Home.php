@@ -3,12 +3,13 @@
 
 <?php
   include 'Template.php';
+  include 'PDO.php';
   pageHead();
+  session_start();
 ?>
 
 <body onload="searchType()">
   <?php
-    session_start();
     if (!empty($_SESSION['park_search'])) {
       $menu = array('Logout');
     } else {
@@ -20,12 +21,19 @@
   <div id="logo_and_search">
     <img src="Images/Park.png" alt="Park Image">
 
-    <form action="Results.php" method="get">
-      <input type="text" id="search" placeholder="">
+    <form action="Results.php" method="get" novalidate>
+      <input type="text" id="search" placeholder="Search for a park">
+      
+      <select name="rating_search" id="rating_options" class="dropdown">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
 
       <?php
-        $pdo = new PDO('mysql:host=localhost;dbname=n9703578', 'n9703578', 'I_am_19_years_old.');
-        $data = $pdo->query('SELECT MIN(suburb) AS suburb FROM parks GROUP BY suburb');
+        $data = $pdo->query('SELECT MIN(suburb) AS suburb FROM items GROUP BY suburb');
         echo '<select name="suburb_search" id="suburb_options" class="dropdown">';
 
         foreach ($data as $row) {
@@ -40,10 +48,9 @@
       <option value="suburb" name="suburb">Suburb</option>
       <option value="rating" name="rating">Rating</option>
       <option value="location" name="location">Location</option>
-      </select>
+    </select>
 
       <input type="submit" class="button" name="submit" id="search_button">
-
       <input type="button" onclick="getLocation()" value="Get Location" class="button" id="location_button">
     </form>
   </div>
