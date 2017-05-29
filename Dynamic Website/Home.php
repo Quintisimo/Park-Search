@@ -5,23 +5,26 @@
   session_start();
   include 'Template.php';
   include 'PDO.php';
+  // Generates page header
   pageHead();
 ?>
 
 <body onload="searchType()">
   <?php
+    // Checkes if a user is loggen in
     if (!empty($_SESSION['park_search'])) {
       $menu = array('Logout');
     } else {
       $menu = array('Register or Login');
     }
+    // Generates page heading
     pageHeader('Find a Park Near You', $menu);
   ?>
 
   <div id="logo_and_search">
     <img src="Images/Park.png" alt="Park Image">
 
-    <form action="Results.php" method="get" novalidate>
+    <form action="Results.php" method="get">
       <input type="text" id="search" placeholder="Search for a park">
 
       <select name="rating_search" id="rating_options" class="dropdown">
@@ -33,6 +36,7 @@
       </select>
 
       <?php
+        //Generates suburb dropdown from database
         $data = $pdo->query('SELECT MIN(suburb) AS suburb FROM items GROUP BY suburb');
         echo '<select name="suburb_search" id="suburb_options" class="dropdown">';
 

@@ -1,6 +1,7 @@
 <?php
   include 'PDO.php';
 
+  //Gets search string from form, searches through the databse for matches and generates a table of the result found
   function nameSearch() {
     $result = $GLOBALS['pdo']->prepare('SELECT id, name, street, suburb, latitude, longitude FROM items WHERE name LIKE :name');
     $result->bindValue(':name', "%$_GET[name_search]%");
@@ -38,6 +39,7 @@
     return $marker_location;
   }
 
+  //Generates a results table showing all the parks found in the selected suburb
   function suburbSearch() {
     $result = $GLOBALS['pdo']->prepare('SELECT id, name, street, latitude, longitude FROM items WHERE suburb = :suburb');
     $result->bindValue(':suburb', $_GET['suburb_search']);
@@ -63,6 +65,7 @@
     return $marker_location;
   }
 
+  //Generates a results table showing all the parks found with the selected rating
   function ratingSearch() {
     $result = $GLOBALS['pdo']->prepare('SELECT id, name, street, suburb, latitude, longitude FROM items WHERE averagerating = :averagerating');
     $result->bindValue(':averagerating', $_GET['rating_search']);
@@ -100,6 +103,7 @@
     return $marker_location;
   }
 
+  //Generates a results table showing all the parks found around a 1km radius of the specified location
   function locationSearch() {
     $location = $_GET['location_search'];
 
@@ -159,6 +163,7 @@
     return $marker_location;
   }
 
+  //If javascript is disables, generates a results table with all the parks present in the database ordered by id
   function allResults() {
     $result = $GLOBALS['pdo']->query('SELECT id, name, street, suburb, latitude, longitude FROM items');
     echo '<h3>Showing results for every park in Brisbane</h3>';

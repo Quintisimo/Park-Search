@@ -1,4 +1,5 @@
 <?php
+  //Generated page header with or without the Google Maps cript depending on the value of the variable
   function pageHead($map = '') {
     echo '<head>';
     echo '<title>Park Search</title>';
@@ -11,6 +12,7 @@
     echo '</head>';
   }
 
+  //Generates page hading with specified variables
   function pageHeader($heading, $array) {
     echo '<header>';
     echo "<h1>$heading</h1>";

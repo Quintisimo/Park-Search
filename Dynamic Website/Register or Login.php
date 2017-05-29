@@ -4,7 +4,8 @@
 <?php
   include 'Template.php';
   include 'Validation.php';
-  include 'Database Submission.php';
+  include 'User Submission.php';
+  //Generates page header
   pageHead();
 ?>
 
@@ -16,6 +17,7 @@
     } else {
       $menu = array('Home');
     }
+    //Generates page heading
     pageHeader('Register or Login', $menu);
   ?>
 
@@ -25,6 +27,7 @@
     <label>Username</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on register username input field
         validateUsername();
       }
     ?>
@@ -33,6 +36,7 @@
     <label>Email</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on email input field
         validateEmail();
       }
     ?>
@@ -41,6 +45,7 @@
     <label for="date_of_birth">Date of Birth</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on date of birth input field
         validateDOB();
       }
     ?>
@@ -49,6 +54,7 @@
     <label for="age">Age</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on age input field
         validateAge();
       }
     ?>
@@ -57,6 +63,7 @@
     <label>Gender</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on gender input field
         validateGender();
       }
     ?>
@@ -70,6 +77,7 @@
     <label>Password</label>
     <?php
       if (isset($_POST['register'])) {
+        //Performs server side validation on register password input field
         validatePassword();
       }
     ?>
@@ -84,6 +92,7 @@
     <label>Username</label>
     <?php
       if (isset($_POST['login'])) {
+        //Performs server side validation on login username input field
         validUsername();
       }
     ?>
@@ -92,6 +101,7 @@
     <label>Password</label>
     <?php
       if (isset($_POST['login'])) {
+        //Performs server side validation on login password input field
         validPassword();
       }
     ?>

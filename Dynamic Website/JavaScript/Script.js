@@ -1,3 +1,4 @@
+//Dynamically replaces the search bar with a dropdown depending on the type of search selected
 function searchType() {
   var search_options = document.getElementById("search_options"),
     search = document.getElementById("search"),
@@ -42,6 +43,7 @@ function searchType() {
   }
 }
 
+//HTML5 Geolocation
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -72,6 +74,8 @@ function showError(error) {
   }
 }
 
+
+//Displaces the map on the park page using Google Maps API
 function individualMap(latitude, longitude) {
   var location = {
     lat: latitude,
@@ -89,26 +93,31 @@ function individualMap(latitude, longitude) {
   });
 }
 
+//Displays the map on the search page using the Google Maps API
 function searchMap(location_array) {
   var map = new google.maps.Map(document.getElementById("search_map"), {
     zoom: 13,
     center: {lat: -27.470125, lng: 153.080072}
   });
 
+  var bounds;
+
   if (location_array.length < 100) {
-    var bounds = new google.maps.LatLngBounds();
+    bounds = new google.maps.LatLngBounds();
   }
 
-  for (i = 0; i < location_array.length; i++) {
-    var remove_quote_name = location_array[i][1].replace("'", "\\'");
-    var remove_quote_street = location_array[i][2].replace("'", "\\'");
+  location_array.forEach (function(location) {
+    //Replaces quotes in park names and street name with escape quotes
+    var remove_quote_name = location[1].replace("'", "\\'");
+    var remove_quote_street = location[2].replace("'", "\\'");
 
+    //Loops thorugh database array and places markers on the map
     var infowindow = new google.maps.InfoWindow({
-      content: '\'' + remove_quote_name + '<br>' + remove_quote_street + '<br><a href="Park.php?id='+ location_array[i][0] + '">See review</a>'
+      content: '\'' + remove_quote_name + '<br>' + remove_quote_street + '<br><a href="Park.php?id='+ location[0] + '">See review</a>'
     });
 
     var marker = new google.maps.Marker({
-      position: {lat: location_array[i][3], lng:location_array[i][4]},
+      position: {lat: location[3], lng:location[4]},
       map: map,
       infowindow: infowindow
     });
@@ -120,7 +129,7 @@ function searchMap(location_array) {
     if (location_array.length < 100) {
       bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
     }
-  }
+  });
 
   if (location_array.length < 100) {
     map.fitBounds(bounds);
@@ -128,19 +137,23 @@ function searchMap(location_array) {
   }
 }
 
+//Closes the successfully registered popup
 function closeDialog() {
   var dialog = document.getElementById('messagebox_register');
   dialog.close();
 }
 
+//Close the successfully logged in popup and redirects to the home page
 function redirectDialog() {
   window.location.href = "home.php";
 }
 
+//Goes back to the search results page from the park page
 function goBack() {
   history.go(-1);
 }
 
+// Move footer according to the height of the page
 function moveFooter() {
   var footer = document.getElementsByTagName('FOOTER')[0],
   vertical_scroll = document.body.scrollHeight > window.innerHeight;

@@ -43,18 +43,9 @@ header {
   background-color: rgba(86, 170, 114, 0.8);
   margin: -8px;
   padding: 20px;
-  position: sticky;
+  position: sticky; /* Header stays at the top of the page when scrolling */
   top: -1px;
-  z-index: 2;
-}
-
-nav {
-  display: inline;
-}
-
-nav label {
-  float: right;
-  margin-top: 5px;
+  z-index: 2; /* Header is postioned over the map on search page */
 }
 
 header a,
@@ -70,10 +61,23 @@ header a {
   text-align: right;
 }
 
+nav {
+  display: inline;
+}
+
+nav label {
+  float: right;
+  margin-top: 5px;
+}
+
 .back_button {
   margin-left: 0;
   float: left;
   text-align: left;
+}
+
+form {
+  padding-top: 10px;
 }
 
 footer {
@@ -84,18 +88,22 @@ footer {
   text-align: center;
 }
 
+/* Removing buttons from age input field */
 ::-webkit-inner-spin-button {
   display: none;
 }
 
+/* Removing calendar display form date of birth input field */
 ::-webkit-calendar-picker-indicator {
   display: none;
 }
 
+/* Changing colour of dat of birth placeholder */
 ::-webkit-datetime-edit {
   color: grey;
 }
 
+/* Styling all buttons on the website to look the same */
 .button {
   padding: 6px 15px;
   background-color: #57aba9;
@@ -103,6 +111,7 @@ footer {
   color: #fafafa;
 }
 
+/* Styling all PHP errors to look the same */
 .error {
   width: 100%;
   display: block;
@@ -112,6 +121,7 @@ footer {
   color: red;
 }
 
+/* Centring search bar, logo and button on page */
 #logo_and_search {
   text-align: center;
   position: fixed;
@@ -142,10 +152,6 @@ img,
   margin-top: 5px;
 }
 
-form {
-  padding-top: 10px;
-}
-
 #search {
   width: 30%;
   padding: 8px 15px;
@@ -158,6 +164,12 @@ form {
   text-transform: capitalize;
 }
 
+#search_button {
+  position: relative;
+  left: -4px;
+}
+
+/* Styling all dropdowns to look the same */
 .dropdown {
   color: grey;
   margin-left: -4px;
@@ -167,11 +179,7 @@ form {
   border: 0 solid #e3ffff;
 }
 
-#search_button {
-  position: relative;
-  left: -4px;
-}
-
+/* Tables has single border and centred */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -216,6 +224,7 @@ td {
   color: black;
 }
 
+/* Map on results page is centred horizontally */
 #search_map {
   width: 100%;
   margin: 0 0 20px;
@@ -239,6 +248,7 @@ td {
   width: 400px;
 }
 
+/* Date is centred horizontally in the table */
 #reviews td:first-child {
   text-align: center;
 }
@@ -266,6 +276,7 @@ td {
   margin-bottom: 2px;
 }
 
+/* Removing parents text-transform */
 .nocaps {
   text-transform: none;
 }
@@ -280,6 +291,7 @@ td {
   font-weight: 600;
 }
 
+/* Hides radio buttons */
 #rating input[type="radio"] {
   display: none;
 }
@@ -318,6 +330,7 @@ form label {
   left: 0;
 }
 
+/* Styling all imput fields to look the same */
 .input {
   display: block;
   width: 320px;
@@ -333,6 +346,7 @@ form label {
   margin-top: 15px;
 }
 
+/* Styles all popups to look the same */
 .messagebox {
   border: none;
   color: white;
@@ -340,11 +354,13 @@ form label {
   z-index: 1;
 }
 
+/* Positing popup to centre over input field */
 #messagebox_register {
   top: 40%;
   margin-left: 12%;
 }
 
+/* Positing popup to centre over input field */
 #messagebox_login {
   top: 30%;
   margin-right: 12%;
@@ -355,6 +371,7 @@ form label {
   margin: 5% 40% 0;
 }
 
+/* Styling central text on logout page */
 .logout {
   position: fixed;
   text-align: center;
@@ -367,16 +384,19 @@ form label {
 }
 
 @media screen and (max-device-width: 1024px) {
+  /* Reducing margin to prevent overlap */
   #login,
   #register {
     margin: 0 2%;
     top: 20%;
   }
 
+  /* Repositing popup to centre over input field */
   #messagebox_register {
     margin-left: 5%;
   }
 
+  /* Repositing popup to centre over input field */
   #messagebox_login {
     margin-right: 5%;
   }
