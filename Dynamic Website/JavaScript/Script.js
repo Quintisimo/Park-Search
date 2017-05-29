@@ -72,7 +72,7 @@ function showError(error) {
   }
 }
 
-function initMap(latitude, longitude) {
+function individualMap(latitude, longitude) {
   var location = {
     lat: latitude,
     lng: longitude
@@ -87,6 +87,45 @@ function initMap(latitude, longitude) {
     position: location,
     map: map
   });
+}
+
+function searchMap(location_array) {
+  var map = new google.maps.Map(document.getElementById("search_map"), {
+    zoom: 13,
+    center: {lat: -27.470125, lng: 153.080072}
+  });
+
+  if (location_array.length < 100) {
+    var bounds = new google.maps.LatLngBounds();
+  }
+
+  for (i = 0; i < location_array.length; i++) {
+    var remove_quote_name = location_array[i][1].replace("'", "\\'");
+    var remove_quote_street = location_array[i][2].replace("'", "\\'");
+
+    var infowindow = new google.maps.InfoWindow({
+      content: '\'' + remove_quote_name + '<br>' + remove_quote_street + '<br><a href="Park.php?id='+ location_array[i][0] + '">See review</a>'
+    });
+
+    var marker = new google.maps.Marker({
+      position: {lat: location_array[i][3], lng:location_array[i][4]},
+      map: map,
+      infowindow: infowindow
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      this.infowindow.open(map, this);
+    });
+
+    if (location_array.length < 100) {
+      bounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));
+    }
+  }
+
+  if (location_array.length < 100) {
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+  }
 }
 
 function closeDialog() {

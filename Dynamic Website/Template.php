@@ -6,7 +6,7 @@
     echo '<script type="text/javascript" src="JavaScript/Script.js"></script>';
 
     if ($map == 'map') {
-      echo '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8e4vYN5deeGZGekRU9tD-KWYxACyXKRw&callback=initMap"></script>';
+      echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8e4vYN5deeGZGekRU9tD-KWYxACyXKRw&callback=initMap"></script>';
     }
     echo '</head>';
   }

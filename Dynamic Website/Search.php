@@ -9,7 +9,7 @@
 
     if ($result->rowCount() > 0) {
       if (empty($_GET['name_search'])) {
-        allResults();
+        $marker_location = allResults();
       } else {
         echo "<h3>Search results for: <span>$_GET[name_search]</span></h3>";
         echo '<div id="search_map"></div>';
@@ -31,11 +31,11 @@
           echo '</tr>';
         }
         echo '</table>';
-        searchMap($marker_location);
       }
     } else {
       echo "<h3>No results found for: <span>$_GET[name_search]</span></h3>";
     }
+    return $marker_location;
   }
 
   function suburbSearch() {
@@ -60,7 +60,7 @@
       echo '</tr>';
     }
     echo '</table>';
-    searchMap($marker_location);
+    return $marker_location;
   }
 
   function ratingSearch() {
@@ -71,7 +71,7 @@
 
     if ($result->rowCount() > 0) {
       if (empty($_GET['rating_search'])) {
-        allResults();
+        $marker_location = allResults();
       } else {
         echo "<h3>Search results for $_GET[rating_search] star parks</h3>";
         echo '<div id="search_map"></div>';
@@ -93,18 +93,18 @@
           echo '</tr>';
         }
         echo '</table>';
-        searchMap($marker_location);
       }
     } else {
       echo "<h3>No results found for $_GET[rating_search] star parks</h3>";
     }
+    return $marker_location;
   }
 
   function locationSearch() {
     $location = $_GET['location_search'];
 
     if (empty($_GET['location_search'])) {
-      allResults();
+      $marker_location = allResults();
     } else {
       $lat = substr($location, 0, 12);
       $long = substr($location, -12);
@@ -152,52 +152,11 @@
           echo '</tr>';
         }
         echo '</table>';
-        searchMap($marker_location);
       } else {
         echo '<h3>No parks found near you</h3>';
       }
     }
-  }
-
-  function searchMap($array, $all_markers = 'no') {
-    echo "\n<script type=\"text/javascript\">";
-    echo "\nfunction initMap() {";
-    echo "\nvar map = new google.maps.Map(document.getElementById(\"search_map\"), {";
-    echo "\nzoom: 12,";
-    echo "\ncenter: {lat: -27.470125 , lng: 153.021072}";
-    echo "\n});";
-
-    if ($all_markers == 'no') {
-      echo "\nvar bounds  = new google.maps.LatLngBounds();";
-    }
-
-    foreach ($array as $array_item) {
-      echo "\nvar infowindow = new google.maps.InfoWindow({";
-      $remove_quote_name = str_replace("'", "\'", $array_item[1]);
-      $remove_quote_street = str_replace("'", "\'", $array_item[2]);
-      echo "\ncontent: '$remove_quote_name<br>$remove_quote_street<br><a href=\"Park.php?id=$array_item[0]\">See reviews</a>'";
-      echo "\n});";
-      echo "\nvar marker = new google.maps.Marker({";
-      echo "\nposition: {lat: $array_item[3], lng: $array_item[4]},";
-      echo "\nmap: map,";
-      echo "\ninfowindow: infowindow";
-      echo "\n});";
-      echo "\ngoogle.maps.event.addListener(marker, 'click', function() {";
-      echo "\nthis.infowindow.open(map, this);";
-      echo "\n});";
-
-      if ($all_markers == 'no') {
-        echo "\nbounds.extend(new google.maps.LatLng(marker.position.lat(), marker.position.lng()));";
-      }
-    }
-
-    if ($all_markers == 'no') {
-      echo "\nmap.fitBounds(bounds);";
-      echo "\nmap.panToBounds(bounds);";
-    }
-    echo "\n}";
-    echo "\ngoogle.maps.event.addDomListener(window, \"load\", initMap);";
-    echo "\n</script>";
+    return $marker_location;
   }
 
   function allResults() {
@@ -223,6 +182,6 @@
       echo '</tr>';
     }
     echo '</table>';
-    searchMap($marker_location, 'all_markers');
+    return $marker_location;
   }
 ?>

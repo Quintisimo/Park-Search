@@ -21,7 +21,7 @@
   <div id="logo_and_search">
     <img src="Images/Park.png" alt="Park Image">
 
-    <form action="Results.php" method="get">
+    <form action="Results.php" method="get" novalidate>
       <input type="text" id="search" placeholder="Search for a park">
 
       <select name="rating_search" id="rating_options" class="dropdown">

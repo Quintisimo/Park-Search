@@ -19,7 +19,7 @@
   }
   include 'Database Submission.php';
 
-  echo "<body onload=\"initMap($park_data[latitude], $park_data[longitude])\">";
+  echo "<body onload=\"individualMap($park_data[latitude], $park_data[longitude])\">";
 
   if (!empty($_SESSION['park_search'])) {
     $menu = array('Home', 'Logout');
@@ -70,6 +70,8 @@
             echo '</tr>';
           }
           echo '</table>';
+        } elseif (empty($_SESSION['park_search'])) {
+          echo '<h2>Login in to leave a review</h2>';
         }
       ?>
     </div>

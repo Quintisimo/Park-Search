@@ -8,7 +8,7 @@
   pageHead('map');
 ?>
 
-<body onload="moveFooter()">
+<body onload="moveFooter();">
   <?php
     if (!empty($_SESSION['park_search'])) {
       $menu = array('Home', 'Logout');
@@ -20,22 +20,28 @@
     if (isset($_GET['submit'])) {
 
       if ($_GET['search_options'] == 'name') {
-        nameSearch();
+        $location_array = nameSearch();
       }
 
       if ($_GET['search_options'] == 'suburb') {
-        suburbSearch();
+        $location_array = suburbSearch();
       }
 
       if ($_GET['search_options'] == 'rating') {
-        ratingSearch();
+        $location_array = ratingSearch();
       }
 
       if ($_GET['search_options'] == 'location') {
-        locationSearch();
+        $location_array = locationSearch();
       }
     }
   ?>
+
+  <script type="text/javascript">
+    var location_array = <?php echo json_encode($location_array, JSON_NUMERIC_CHECK); ?>;
+    console.log(location_array);
+    searchMap(location_array);
+  </script>
   <footer>Click on a park to read more and write a review</footer>
 </body>
 

@@ -1,9 +1,11 @@
+/* Sets background image for entire website */
 html {
   background: url(../Images/Background.jpg) no-repeat center center fixed;
   background-size: cover;
   overflow-x: hidden;
 }
 
+/* Sets font colour and familty for entire website */
 body {
   color: #fafafa;
   font-family: sans-serif;
@@ -50,6 +52,11 @@ nav {
   display: inline;
 }
 
+nav label {
+  float: right;
+  margin-top: 5px;
+}
+
 header a,
 .back_button {
   margin-left: 20px;
@@ -63,9 +70,10 @@ header a {
   text-align: right;
 }
 
-nav label {
-  float: right;
-  margin-top: 5px;
+.back_button {
+  margin-left: 0;
+  float: left;
+  text-align: left;
 }
 
 footer {
@@ -125,6 +133,15 @@ img,
   display: block;
 }
 
+#location_button {
+  margin-top: 20px;
+  visibility: hidden;
+}
+
+#review_button {
+  margin-top: 5px;
+}
+
 form {
   padding-top: 10px;
 }
@@ -153,11 +170,6 @@ form {
 #search_button {
   position: relative;
   left: -4px;
-}
-
-#location_button {
-  margin-top: 20px;
-  visibility: hidden;
 }
 
 table {
@@ -199,44 +211,28 @@ td {
   width: 400px;
 }
 
-#search_map {
-  width: 100%;
-}
-
-#map_container {
-  width: 100%;
-  position: fixed;
+#search_map,
+#search_map a {
+  color: black;
 }
 
 #search_map {
+  width: 100%;
   margin: 0 0 20px;
   margin-left: 50%;
   transform: translateX(-50%);
   text-transform: capitalize;
 }
 
-#search_map,
-#search_map a {
-  color: black;
-}
-
+#reviews,
 #content {
-  top: 20%;
-}
-
-.back_button {
-  margin-left: 0;
-  float: left;
-  text-align: left;
+  position: absolute;
+  padding: 0 40px;
 }
 
 #reviews {
   top: 24%;
   right: 0;
-}
-
-#review_button {
-  margin-top: 5px;
 }
 
 #reviews table {
@@ -253,27 +249,25 @@ td {
   padding: 10px;
 }
 
-#reviews,
+#reviews form {
+  padding-top: 20px;
+}
+
+#reviews form textarea {
+  width: 394px;
+  margin-top: 10px;
+}
+
 #content {
-  position: absolute;
-  padding: 0 40px;
+  top: 20%;
 }
 
 #content h2 {
   margin-bottom: 2px;
 }
 
-#reviews form {
-  padding-top: 20px;
-}
-
 .nocaps {
   text-transform: none;
-}
-
-#reviews form textarea {
-  width: 394px;
-  margin-top: 10px;
 }
 
 #rating_label {
@@ -309,19 +303,19 @@ form label {
   margin-right: 84px;
 }
 
+#login,
+#register {
+  position: fixed;
+  margin: 0 10%;
+  top: 15%;
+}
+
 #login {
   right: 0;
 }
 
 #register {
   left: 0;
-}
-
-#login,
-#register {
-  position: fixed;
-  margin: 0 10%;
-  top: 15%;
 }
 
 .input {
