@@ -55,8 +55,8 @@
     <div itemprop="review" itemscope itemtype="http://schema.org/Review">
       <?php
         //Gets reviews from database
-        $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE id = :id');
-        $review_data->bindValue(':id', $_GET['id']);
+        $review_data = $pdo->prepare('SELECT reviewdate, username, rating, review FROM reviews WHERE name = :name');
+        $review_data->bindValue(':name', $park_data['name']);
         $review_data->execute();
 
         //Only generates table if reviews for the park exist in the database

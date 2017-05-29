@@ -26,7 +26,7 @@
     unset($_POST['register']);
   }
 
-  //Checks if validation functions return true and if they do it logs in the user  
+  //Checks if validation functions return true and if they do it logs in the user
   if (validUsername() && validPassword()) {
     session_start();
     $_SESSION['park_search'] = $_POST['login_username'];

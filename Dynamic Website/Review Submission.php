@@ -1,7 +1,7 @@
 <?php
   include 'PDO.php';
 
-  //Checks if validation functions return true and if they do submits review data and average rating of each park to the database 
+  //Checks if validation functions return true and if they do submits review data and average rating of each park to the database
   if (validateRating() && validateReview()) {
     $review_data = $pdo->prepare('INSERT INTO reviews (id, name, reviewdate, username, rating, review) VALUES (:id, :name, :reviewdate, :username, :rating, :review)');
     $review_data->bindValue(':id', $_GET['id']);

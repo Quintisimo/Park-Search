@@ -182,8 +182,8 @@
   function validateReview() {
     $regular_expression = '/^[A-z\s]+$/';
     $user_data = $GLOBALS['pdo']->query('SELECT name, username FROM reviews');
-    $park_list = $GLOBALS['pdo']->prepare('SELECT name FROM items WHERE id = :id');
-    $park_list->bindValue(':id', $_GET['id']);
+    $park_list = $GLOBALS['pdo']->prepare('SELECT name FROM items WHERE name = :name');
+    $park_list->bindValue(':name', $GLOBALS['name']);
     $park_list->execute();
     $park_data = $park_list->fetch(PDO::FETCH_ASSOC);
 
