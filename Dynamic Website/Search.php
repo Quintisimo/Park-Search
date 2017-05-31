@@ -163,7 +163,7 @@
     return $marker_location;
   }
 
-  //If javascript is disables, generates a results table with all the parks present in the database ordered by id
+  //If HTML5 validation is disables, generates a results table with all the parks present in the database ordered by id
   function allResults() {
     $result = $GLOBALS['pdo']->query('SELECT id, name, street, suburb, latitude, longitude FROM items');
     echo '<h3>Showing results for every park in Brisbane</h3>';
